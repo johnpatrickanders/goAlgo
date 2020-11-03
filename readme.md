@@ -14,6 +14,8 @@ MVP Features and User Stories are outlined below, along with some stretch goals/
 - [ ] Sliding scale for changing array size and speed
 - [ ] Translation to different languages
 - [ ] Darkmode
+- [ ] User comments below each Algo sorted by newest
+    - [ ] Up/Downvoting like Reddit
 
 
 <!-- OLD -->
