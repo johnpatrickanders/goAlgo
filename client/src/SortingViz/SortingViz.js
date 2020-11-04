@@ -35,12 +35,12 @@ export default function SortingViz() {
 
     for (let i = 0; i < framedAnimations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
-      const [barOneIdx, barTwoIdx] = framedAnimations[i];
-      const barOne = bars[barOneIdx].style;
-      const barTwo = bars[barTwoIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
+          const [barOneIdx, barTwoIdx] = framedAnimations[i];
+          const barOne = bars[barOneIdx].style;
+          const barTwo = bars[barTwoIdx].style;
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
@@ -52,12 +52,15 @@ export default function SortingViz() {
       } else {
         setTimeout(() => {
           // if (barOneIdx < barTwoIdx) {
+          const [barOneIdx, barTwoIdx] = framedAnimations[i];
+          const barOne = bars[barOneIdx].style;
+          const barTwo = bars[barTwoIdx].style;
 
           // const firstHeight = framedAnimations[barOneIdx];
           // const secondHeight = framedAnimations[barTwoIdx];
           const tempHeight = barOne.height;
-          barOne.height = barTwo.height;
-          barTwo.height = tempHeight;
+          barOne.height = framedAnimations[i][0].style.height;
+          barTwo.height = framedAnimations[i][1].style.height;
           // }
         }, i * SPEED)
       }
