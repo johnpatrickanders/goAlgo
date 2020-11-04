@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import bubbleSort from './bubbleSort';
+import insertionSort from './insertionSort';
 import './SortingViz.css';
 
 export default function SortingViz() {
@@ -47,8 +48,12 @@ export default function SortingViz() {
         }, i * SPEED)
       }
     }
+
   }
 
+  const insertionSortAnimate = () => {
+    console.log(insertionSort(array));
+  }
 
 
   return (
@@ -63,6 +68,7 @@ export default function SortingViz() {
       ))}
       <button onClick={resetArray}>Get New Array</button>
       <button onClick={bubbleSortAnimate}>Bubble Sort</button>
+      <button onClick={insertionSortAnimate}>Insertion Sort</button>
     </div>
   )
 
