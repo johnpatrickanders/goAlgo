@@ -24,8 +24,6 @@ export default function SortingViz() {
 
   const bubbleSortAnimate = () => {
     const animations = bubbleSort(array);
-
-
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
