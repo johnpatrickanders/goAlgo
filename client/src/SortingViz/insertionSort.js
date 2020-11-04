@@ -1,3 +1,5 @@
+import framerize from './util';
+
 export default function insertionSort(array) {
   for (let i = 1; i < array.length; i++) {
     let j = i;
