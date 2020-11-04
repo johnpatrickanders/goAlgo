@@ -24,18 +24,11 @@ export default function SortingViz() {
 
   const bubbleSortAnimate = () => {
     const animations = bubbleSort(array);
-    const framedAnimations = [];
-    for (const animation of animations) {
-      framedAnimations.push(animation.comparison);
-      framedAnimations.push(animation.comparison);
-      framedAnimations.push(animation.swap);
-    }
-    console.log(animations)
-    console.log(framedAnimations)
 
-    for (let i = 0; i < framedAnimations.length; i++) {
+
+    for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
-      const [barOneIdx, barTwoIdx] = framedAnimations[i];
+      const [barOneIdx, barTwoIdx] = animations[i];
       const barOne = bars[barOneIdx].style;
       const barTwo = bars[barTwoIdx].style;
       const isColorChange = i % 3 !== 2;

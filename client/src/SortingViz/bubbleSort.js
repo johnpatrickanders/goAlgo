@@ -20,5 +20,13 @@ export default function bubbleSort(array) {
       animations.push(animation)
     }
   }
-  return animations
+
+  const framedAnimations = [];
+  for (const animation of animations) {
+    framedAnimations.push(animation.comparison);
+    framedAnimations.push(animation.comparison);
+    framedAnimations.push(animation.swap);
+  }
+
+  return framedAnimations
 }
