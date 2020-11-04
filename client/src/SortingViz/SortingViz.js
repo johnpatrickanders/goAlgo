@@ -5,7 +5,7 @@ import './SortingViz.css';
 export default function SortingViz() {
   const [array, setArray] = useState([]);
 
-  const SPEED = 10;
+  const SPEED = 5;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 120);
@@ -35,42 +35,30 @@ export default function SortingViz() {
 
     for (let i = 0; i < framedAnimations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
+      const [barOneIdx, barTwoIdx] = framedAnimations[i];
+      const barOne = bars[barOneIdx].style;
+      const barTwo = bars[barTwoIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const [barOneIdx, barTwoIdx] = framedAnimations[i];
-          const barOne = bars[barOneIdx].style;
-          const barTwo = bars[barTwoIdx].style;
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-          // setTimeout(() => {
-          //   bars[comparison[1]].style.backgroundColor = 'red';
-          //   bars[comparison[0]].style.backgroundColor = 'red';
-          // }, (i + 1) * SPEED)
         }, i * SPEED)
       } else {
         setTimeout(() => {
-          // if (barOneIdx < barTwoIdx) {
-          const [barOneIdx, barTwoIdx] = framedAnimations[i];
-          const barOne = bars[barOneIdx].style;
-          const barTwo = bars[barTwoIdx].style;
-
-          // const firstHeight = framedAnimations[barOneIdx];
-          // const secondHeight = framedAnimations[barTwoIdx];
-          const tempHeight = barOne.height;
-          barOne.height = framedAnimations[i][0].style.height;
-          barTwo.height = framedAnimations[i][1].style.height;
-          // }
+          if (barOneIdx > barTwoIdx) {
+            const tempHeight = barOne.height;
+            barOne.height = barTwo.height;
+            barTwo.height = tempHeight;
+            barOne.backgroundColor = 'purple';
+          }
         }, i * SPEED)
       }
     }
   }
 
-  // const mergeSort = () => {
-  //   const jsSortedArray = array.slice()
-  //   jsSortedArray.sort((a, b) => a - b)
-  // }
+
 
   return (
     <div className="array-container">
