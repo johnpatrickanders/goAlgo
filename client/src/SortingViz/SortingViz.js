@@ -6,10 +6,10 @@ import './SortingViz.css';
 export default function SortingViz() {
   const [array, setArray] = useState([]);
 
-  const SPEED = 5;
+  const SPEED = 400;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
-  const maxBarContainerWidth = Math.floor(window.screen.availWidth / 120);
+  const maxBarContainerWidth = Math.floor(window.screen.availWidth / 300);
 
   const resetArray = () => {
     const array = [];
@@ -52,7 +52,36 @@ export default function SortingViz() {
   }
 
   const insertionSortAnimate = () => {
-    console.log(insertionSort(array));
+    console.log(array)
+    const animations = insertionSort(array);
+    console.log(animations)
+    for (let i = 0; i < animations.length; i++) {
+      const bars = document.getElementsByClassName('array-bar');
+      const [currIdx, otherIdx] = animations[i];
+      const barOne = bars[currIdx].style;
+      const barTwo = bars[otherIdx].style;
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
+        setTimeout(() => {
+          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
+          barOne.backgroundColor = currentBarColor;
+          barTwo.backgroundColor = currentBarColor;
+        }, i * SPEED)
+      } else {
+        setTimeout(() => {
+          console.log(animations[i])
+          // const [prevCurrIdx, prevOtherIdx] = animations[i - 1];
+          if (currIdx !== otherIdx) {
+            console.log(currIdx, otherIdx)
+            const tempHeight = barOne.height;
+            barOne.height = barTwo.height;
+
+            barTwo.height = tempHeight;
+            barOne.backgroundColor = 'purple';
+          }
+        }, i * SPEED)
+      }
+    }
   }
 
 
