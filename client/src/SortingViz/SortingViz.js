@@ -117,6 +117,7 @@ export default function SortingViz() {
 
   const selectionSortAnimate = () => {
     const animations = selectionSort(array);
+    console.log(animations);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
