@@ -55,8 +55,8 @@ export default function SortingViz() {
     console.log(array)
     const animations = insertionSort(array);
     console.log(animations)
+    const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
-      const bars = document.getElementsByClassName('array-bar');
       const barsArr = [...bars]
       console.log('BARS:', bars)
       let [currIdx, otherIdx] = animations[i];
@@ -66,8 +66,12 @@ export default function SortingViz() {
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
-          barOne.backgroundColor = currentBarColor;
-          barTwo.backgroundColor = currentBarColor;
+          barOne.backgroundColor = 'orange';
+          // barTwo.backgroundColor = 'currentBarColor';
+          for (let i = currIdx - 1; i >= 0; i--) {
+            let bar = bars[i]
+            bar.style.backgroundColor = currentBarColor;
+          }
         }, i * SPEED)
       } else {
         setTimeout(() => {
@@ -75,19 +79,15 @@ export default function SortingViz() {
           // const [prevCurrIdx, prevOtherIdx] = animations[i - 1];
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
-            const swap = (i, j, subArr) => {
-              console.log('SWAP');
-              const temp = subArr[i].style.height;
-              console.log(temp, subArr[j].style.height)
-              subArr[i].style.height = subArr[j].style.height;
-              subArr[j].style.height = temp;
-            }
             const splice = (currIdx, startIdx, subArr) => {
               console.log('SPLICE:', currIdx)
               while (currIdx > startIdx) {
                 const temp = subArr[currIdx].style.height;
                 subArr[currIdx].style.height = subArr[currIdx - 1].style.height
                 subArr[currIdx - 1].style.height = temp
+                const tempColor = subArr[currIdx].style.backgroundColor;
+                subArr[currIdx].style.backgroundColor = subArr[currIdx - 1].style.backgroundColor
+                subArr[currIdx - 1].style.backgroundColor = tempColor
                 currIdx -= 1;
               }
             }
@@ -97,17 +97,8 @@ export default function SortingViz() {
                 splice(currIdx, otherIdx, bars)
                 initIdx = -1;
                 otherIdx -= 1;
-                continue;
               }
-
-              // swap(otherIdx, otherIdx + 1, bars);
             }
-            // console.log(currIdx, otherIdx)
-            // const tempHeight = barTwo.height;
-            // barTwo.height = barOne.height;
-            // barOne.height = tempHeight;
-
-            // barOne.backgroundColor = 'purple';
           }
         }, i * SPEED)
       }
