@@ -2,8 +2,8 @@ import framerize from './util';
 
 export default function quickSort(array) {
   // Write your code here.
-  console.log(framerize(quickSortHelper(array, 0, array.length - 1)));
-  return array;
+  const frames = framerize(quickSortHelper(array, 0, array.length - 1));
+  return frames;
 }
 
 function quickSortHelper(array, startIdx, endIdx, animations = []) {
