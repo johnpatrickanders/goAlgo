@@ -22,6 +22,5 @@ export default function bubbleSort(array) {
       animations.push(animation)
     }
   }
-  console.log(animations)
   return framerize(animations);
 }

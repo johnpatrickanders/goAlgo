@@ -7,7 +7,7 @@ import './SortingViz.css';
 export default function SortingViz() {
   const [array, setArray] = useState([]);
 
-  const SPEED = 400;
+  const SPEED = 100;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 300);
@@ -60,9 +60,7 @@ export default function SortingViz() {
   }
 
   const insertionSortAnimate = () => {
-    console.log(array)
     const animations = insertionSort(array);
-    console.log(animations)
     const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
       const barsArr = [...bars]
@@ -132,7 +130,11 @@ export default function SortingViz() {
         }, i * SPEED)
       } else {
         setTimeout(() => {
-          if (barOneIdx > barTwoIdx) {
+          const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
+          if (barOneIdx !== prevBarOneIdx
+            || barTwoIdx !== prevBarTwoIdx
+            || barTwoIdx === array.length - 1
+            || i === animations.length - 1) {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
