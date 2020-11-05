@@ -74,7 +74,6 @@ export default function SortingViz() {
         setTimeout(() => {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = 'orange';
-          // barTwo.backgroundColor = 'currentBarColor';
           for (let i = currIdx - 1; i >= 0; i--) {
             let bar = bars[i]
             bar.style.backgroundColor = currentBarColor;
@@ -83,7 +82,6 @@ export default function SortingViz() {
       } else {
         setTimeout(() => {
           console.log(animations[i])
-          // const [prevCurrIdx, prevOtherIdx] = animations[i - 1];
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
             const splice = (currIdx, startIdx, subArr) => {
