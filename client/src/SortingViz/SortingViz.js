@@ -57,7 +57,9 @@ export default function SortingViz() {
     console.log(animations)
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
-      const [currIdx, otherIdx] = animations[i];
+      const barsArr = [...bars]
+      console.log('BARS:', bars)
+      let [currIdx, otherIdx] = animations[i];
       const barOne = bars[currIdx].style;
       const barTwo = bars[otherIdx].style;
       const isColorChange = i % 3 !== 2;
@@ -72,12 +74,40 @@ export default function SortingViz() {
           console.log(animations[i])
           // const [prevCurrIdx, prevOtherIdx] = animations[i - 1];
           if (currIdx !== otherIdx) {
-            console.log(currIdx, otherIdx)
-            const tempHeight = barOne.height;
-            barOne.height = barTwo.height;
+            let initIdx = currIdx;
+            const swap = (i, j, subArr) => {
+              console.log('SWAP');
+              const temp = subArr[i].style.height;
+              console.log(temp, subArr[j].style.height)
+              subArr[i].style.height = subArr[j].style.height;
+              subArr[j].style.height = temp;
+            }
+            const splice = (currIdx, startIdx, subArr) => {
+              console.log('SPLICE:', currIdx)
+              while (currIdx > startIdx) {
+                const temp = subArr[currIdx].style.height;
+                subArr[currIdx].style.height = subArr[currIdx - 1].style.height
+                subArr[currIdx - 1].style.height = temp
+                currIdx -= 1;
+              }
+            }
+            for (otherIdx; otherIdx < currIdx; otherIdx++) {
+              if (currIdx === initIdx) {
+                console.log('CURRENT===INIT');
+                splice(currIdx, otherIdx, bars)
+                initIdx = -1;
+                otherIdx -= 1;
+                continue;
+              }
 
-            barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+              // swap(otherIdx, otherIdx + 1, bars);
+            }
+            // console.log(currIdx, otherIdx)
+            // const tempHeight = barTwo.height;
+            // barTwo.height = barOne.height;
+            // barOne.height = tempHeight;
+
+            // barOne.backgroundColor = 'purple';
           }
         }, i * SPEED)
       }
