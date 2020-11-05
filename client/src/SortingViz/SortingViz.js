@@ -19,6 +19,13 @@ export default function SortingViz() {
     setArray(array)
   }
 
+  const resetColors = () => {
+    const bars = document.getElementsByClassName('array-bar');
+    for (const bar in bars) {
+      bar.style.backgroundColor = 'pink'
+    }
+  }
+
   useEffect(() => {
     resetArray();
   }, []);
@@ -100,11 +107,14 @@ export default function SortingViz() {
               }
             }
           }
+          // setTimeout(() => {
+          //   barTwo.backgroundColor = 'green';
+
+          // }, i * SPEED)
         }, i * SPEED)
       }
     }
   }
-
 
   return (
     <div className="array-container">
