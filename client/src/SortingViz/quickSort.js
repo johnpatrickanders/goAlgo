@@ -17,6 +17,8 @@ function quickSortHelper(array, startIdx, endIdx, animations = []) {
     if (array[leftIdx] > array[pivotIdx] && array[rightIdx] < array[pivotIdx]) {
       swap(array, leftIdx, rightIdx);
       animation.swap = [leftIdx, rightIdx, pivotIdx];
+    } else {
+      animation.swap = [0, 0, pivotIdx]
     }
     animations.push(animation);
     if (array[leftIdx] <= array[pivotIdx]) leftIdx += 1;
