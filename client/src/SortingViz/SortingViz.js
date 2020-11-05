@@ -10,7 +10,7 @@ export default function SortingViz() {
   const SPEED = 100;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
-  const maxBarContainerWidth = Math.floor(window.screen.availWidth / 300);
+  const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
 
   const resetArray = () => {
     const array = [];
@@ -131,6 +131,10 @@ export default function SortingViz() {
       } else {
         setTimeout(() => {
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
+          // const prevSortedBar = barOneIdx > 0 ? bars[barOneIdx - 1].style : barTwo;
+          // if (barTwo.height < prevSortedBar.height) {
+          //   barTwo.backgroundColor = 'yellow'
+          // }
           if (barOneIdx !== prevBarOneIdx
             || barTwoIdx !== prevBarTwoIdx
             || barTwoIdx === array.length - 1
