@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import bubbleSort from './bubbleSort';
 import insertionSort from './insertionSort';
 import selectionSort from './selectionSort';
+import quickSort from './quickSort';
 import './SortingViz.css';
 
 export default function SortingViz() {
@@ -150,6 +151,34 @@ export default function SortingViz() {
 
   }
 
+  const quickSortAnimate = () => {
+    const animations = quickSort(array);
+    for (let i = 0; i < animations.length; i++) {
+      const bars = document.getElementsByClassName('array-bar');
+      const [barOneIdx, barTwoIdx] = animations[i];
+      const barOne = bars[barOneIdx].style;
+      const barTwo = bars[barTwoIdx].style;
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
+        setTimeout(() => {
+          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
+          barOne.backgroundColor = currentBarColor;
+          barTwo.backgroundColor = currentBarColor;
+        }, i * SPEED)
+      } else {
+        setTimeout(() => {
+          if (barOneIdx > barTwoIdx) {
+            const tempHeight = barOne.height;
+            barOne.height = barTwo.height;
+            barTwo.height = tempHeight;
+            barOne.backgroundColor = 'purple';
+          }
+        }, i * SPEED)
+      }
+    }
+
+  }
+
   return (
     <div className="array-container">
       {array.map((value, i) => (
@@ -164,6 +193,7 @@ export default function SortingViz() {
       <button onClick={bubbleSortAnimate}>Bubble Sort</button>
       <button onClick={insertionSortAnimate}>Insertion Sort</button>
       <button onClick={selectionSortAnimate}>Selection Sort</button>
+      <button onClick={quickSortAnimate}>Quick Sort</button>
     </div>
   )
 
