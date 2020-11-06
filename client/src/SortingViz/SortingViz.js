@@ -30,14 +30,17 @@ export default function SortingViz() {
 
   const resetColors = () => {
     const bars = document.getElementsByClassName('array-bar');
-    for (const bar in bars) {
-      bar.style.backgroundColor = 'pink'
+    for (let bar of bars) {
+      bar.style.backgroundColor = "orangered"
     }
   }
 
-  const stopStart = () => {
+  const stop = () => {
     // for (let i = 0; i < array.length * 3; i++) {
-    stopLoop = !stopLoop;
+    if (!stopLoop) {
+      stopLoop = !stopLoop;
+      stopLoop = !stopLoop;
+    }
     // let i = stopTimeouts.length - 1;
     while (numStops >= 0) {
       clearTimeout(numStops);
@@ -228,12 +231,19 @@ export default function SortingViz() {
         <div
           className="array-bar"
           key={i}
-          style={{ height: `${value}px` }}
+          style={{
+            height: `${value}px`,
+            backgroundColor: 'orangered',
+            width: '2vw',
+            display: 'inline-block',
+            margin: 0
+          }}
         >
         </div>
       ))}
       <div className="buttons">
-        <button onClick={stopStart}>Stop/Start</button>
+        <button onClick={stop}>Stop</button>
+        <button onClick={resetColors}>Reset Colors</button>
         <button onClick={resetArray}>Get New Array</button>
         <button onClick={bubbleSortAnimate}>Bubble Sort</button>
         <button onClick={insertionSortAnimate}>Insertion Sort</button>
