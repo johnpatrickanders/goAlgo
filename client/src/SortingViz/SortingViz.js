@@ -153,6 +153,7 @@ export default function SortingViz() {
 
   const quickSortAnimate = () => {
     const animations = quickSort(array);
+    console.log(animations)
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];

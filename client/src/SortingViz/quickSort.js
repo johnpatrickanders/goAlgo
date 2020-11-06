@@ -31,11 +31,11 @@ function quickSortHelper(array, startIdx, endIdx, animations = []) {
   animations.push(animation);
   const leftSubArrIsSmaller = rightIdx - 1 - startIdx < endIdx - (rightIdx + 1)
   if (leftSubArrIsSmaller) {
-    quickSortHelper(array, startIdx, rightIdx - 1);
-    quickSortHelper(array, rightIdx + 1, endIdx);
+    quickSortHelper(array, startIdx, rightIdx - 1, animations);
+    quickSortHelper(array, rightIdx + 1, endIdx, animations);
   } else {
-    quickSortHelper(array, rightIdx + 1, endIdx);
-    quickSortHelper(array, startIdx, rightIdx - 1);
+    quickSortHelper(array, rightIdx + 1, endIdx, animations);
+    quickSortHelper(array, startIdx, rightIdx - 1, animations);
   }
   return animations
 }
