@@ -8,14 +8,15 @@ import './SortingViz.css';
 export default function SortingViz() {
   const [array, setArray] = useState([]);
 
-  const SPEED = 100;
+  const SPEED = 50;
+  const NUM_BARS = 30;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
 
   const resetArray = () => {
     const array = [];
-    for (let i = 0; i < maxBarContainerWidth; i += 1) {
+    for (let i = 0; i < NUM_BARS; i += 1) {
       array.push(randomInt(5, maxBarHeight))
     }
     setArray(array)
@@ -156,24 +157,44 @@ export default function SortingViz() {
     console.log(animations)
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
-      const [barOneIdx, barTwoIdx] = animations[i];
+      const [barOneIdx, barTwoIdx, pivotIdx] = animations[i];
       const barOne = bars[barOneIdx].style;
       const barTwo = bars[barTwoIdx].style;
+      const barPivot = bars[pivotIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
+          barPivot.backgroundColor = 'purple';
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
+          // if (barOneIdx === barTwoIdx) {
+          //   barTwo.backgroundColor = 'orange';
+          // }
+          if (barOneIdx === pivotIdx && barTwoIdx > 0) {
+            barOne.backgroundColor = 'yellow';
+            barTwo.backgroundColor = 'yellow';
+          }
         }, i * SPEED)
       } else {
         setTimeout(() => {
-          if (barOneIdx > barTwoIdx) {
+          if (barOneIdx !== 0 && barTwoIdx !== 0 // normal "while" swap
+            || i === animations.length - 1) {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+            barOne.backgroundColor = 'green';
+            barTwo.backgroundColor = 'green';
+          } else if (barOneIdx === pivotIdx && barTwoIdx > 0) { // special "pivot" swap
+            barPivot.backgroundColor = 'purple';
+            const tempHeight = barOne.height;
+            barOne.height = barTwo.height;
+            barTwo.height = tempHeight;
+            barPivot.backgroundColor = 'green';
+
           }
+          // barPivot.backgroundColor = 'green';
+          barTwo.backgroundColor = 'green';
         }, i * SPEED)
       }
     }
