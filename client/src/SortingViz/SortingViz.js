@@ -8,11 +8,17 @@ import './SortingViz.css';
 export default function SortingViz() {
   const [array, setArray] = useState([]);
 
-  const SPEED = 50;
-  const NUM_BARS = 30;
+  const SPEED = 40;
+  const NUM_BARS = 40;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
+
+  // let stopTimeouts = [];
+  let stop1 = null;
+  let stop2 = null;
+  let stopLoop = false;
+  let numStops = 0;
 
   const resetArray = () => {
     const array = [];
@@ -29,34 +35,49 @@ export default function SortingViz() {
     }
   }
 
+  const stopStart = () => {
+    // for (let i = 0; i < array.length * 3; i++) {
+    stopLoop = !stopLoop;
+    // let i = stopTimeouts.length - 1;
+    while (numStops >= 0) {
+      clearTimeout(numStops);
+      console.log("STOPPPPPP");
+      numStops--;
+    }
+  }
+
   useEffect(() => {
     resetArray();
   }, []);
 
   const bubbleSortAnimate = () => {
     const animations = bubbleSort(array);
-    for (let i = 0; i < animations.length; i++) {
+    for (let i = 0; i < animations.length && !stopLoop; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
       const barOne = bars[barOneIdx].style;
       const barTwo = bars[barTwoIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
-        setTimeout(() => {
+        stop1 = setTimeout(() => {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
         }, i * SPEED)
       } else {
-        setTimeout(() => {
+        stop2 = setTimeout(() => {
           if (barOneIdx > barTwoIdx) {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
             barOne.backgroundColor = 'purple';
           }
-        }, i * SPEED)
+        }, i * SPEED);
       }
+      numStops += 1;
+      // stopTimeouts.push(stop1);
+      // stopTimeouts.push(stop2);
+      // console.log(stopTimeouts)
     }
 
   }
@@ -211,11 +232,14 @@ export default function SortingViz() {
         >
         </div>
       ))}
-      <button onClick={resetArray}>Get New Array</button>
-      <button onClick={bubbleSortAnimate}>Bubble Sort</button>
-      <button onClick={insertionSortAnimate}>Insertion Sort</button>
-      <button onClick={selectionSortAnimate}>Selection Sort</button>
-      <button onClick={quickSortAnimate}>Quick Sort</button>
+      <div className="buttons">
+        <button onClick={stopStart}>Stop/Start</button>
+        <button onClick={resetArray}>Get New Array</button>
+        <button onClick={bubbleSortAnimate}>Bubble Sort</button>
+        <button onClick={insertionSortAnimate}>Insertion Sort</button>
+        <button onClick={selectionSortAnimate}>Selection Sort</button>
+        <button onClick={quickSortAnimate}>Quick Sort</button>
+      </div>
     </div>
   )
 
