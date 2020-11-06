@@ -1,15 +1,41 @@
-.array-container {
-  position: absolute;
-  left: 100px;
-  height: 1050px;
-  border: 10px;
-  border-radius: 5pt;
-  stroke: palegreen;
-  stroke-width: 2pt;
+body {
+  background-color:  rgb(8, 8, 60);
 }
 
-/* .array-bar {
-  width: 2vw;
-  display: inline-block;
-  margin: 0 1px;
-} */
+.algo-container {
+  padding: 20px;
+  width: 98vw;
+  height: 100vh / 1.5;
+  border: 10px;
+  border-radius: 5pt;
+  stroke: black;
+  stroke-width: 2pt;
+  background-color: rgb(48, 67, 67);
+}
+
+.array-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 16pt;
+  justify-self: space-between;
+  border: 3px;
+  border-radius: 3px;
+  border-color: orangered;
+  height: 30px;
+  width: auto;
+  margin: 20px;
+}
+
+button:hover {
+  background-color: peachpuff;
+}

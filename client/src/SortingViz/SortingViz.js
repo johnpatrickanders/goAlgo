@@ -7,16 +7,14 @@ import './SortingViz.css';
 
 export default function SortingViz() {
   const [array, setArray] = useState([]);
+  const [NUM_BARS, SET_NUM_BARS] = useState(200);
 
-  const SPEED = 40;
-  const NUM_BARS = 40;
+  const SPEED = 50;
+  // const NUM_BARS = 400;
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
 
-  // let stopTimeouts = [];
-  let stop1 = null;
-  let stop2 = null;
   let stopLoop = false;
   let numStops = 0;
 
@@ -47,6 +45,7 @@ export default function SortingViz() {
       console.log("STOPPPPPP");
       numStops--;
     }
+    numStops = 0;
   }
 
   useEffect(() => {
@@ -62,13 +61,13 @@ export default function SortingViz() {
       const barTwo = bars[barTwoIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
-        stop1 = setTimeout(() => {
+        setTimeout(() => {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
         }, i * SPEED)
       } else {
-        stop2 = setTimeout(() => {
+        setTimeout(() => {
           if (barOneIdx > barTwoIdx) {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
@@ -226,21 +225,23 @@ export default function SortingViz() {
   }
 
   return (
-    <div className="array-container">
-      {array.map((value, i) => (
-        <div
-          className="array-bar"
-          key={i}
-          style={{
-            height: `${value}px`,
-            backgroundColor: 'orangered',
-            width: '2vw',
-            display: 'inline-block',
-            margin: 0
-          }}
-        >
-        </div>
-      ))}
+    <div className="algo-container">
+      <div className="array-container">
+        {array.map((value, i) => (
+          <div
+            className="array-bar"
+            key={i}
+            style={{
+              height: `${value}px`,
+              backgroundColor: 'orangered',
+              width: `${90 / NUM_BARS}vh`,
+              display: 'inline-block',
+              margin: 1
+            }}
+          >
+          </div>
+        ))}
+      </div>
       <div className="buttons">
         <button onClick={stop}>Stop</button>
         <button onClick={resetColors}>Reset Colors</button>
