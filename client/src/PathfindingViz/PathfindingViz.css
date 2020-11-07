@@ -1,0 +1,12 @@
+.grid {
+  margin: 1px;
+  background: whitesmoke;
+  /* position: absolute; */
+  justify-items: space-around;
+
+}
+
+.grid-row {
+  display: flex;
+  justify-content: center;
+}

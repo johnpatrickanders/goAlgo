@@ -1,0 +1,16 @@
+.node {
+  width: 25px;
+  height: 25px;
+  outline: 1px solid grey;
+  display: inline-block;
+  /* color: rgb(103, 61, 61);
+  background-color: rosybrown; */
+}
+
+.node-finish {
+  background-color: red;
+}
+
+.node-start {
+  background-color: greenyellow;
+}

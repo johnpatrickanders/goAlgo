@@ -1,3 +1,5 @@
+import framerize from './util';
+
 export default function bubbleSort(array) {
   // Write your code here.
   const animations = []
@@ -20,5 +22,5 @@ export default function bubbleSort(array) {
       animations.push(animation)
     }
   }
-  return animations
+  return framerize(animations);
 }
