@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Slider from '../SortingViz/SpeedControls';
 import './NavBar.css'
 
 
@@ -12,7 +13,7 @@ export default function NavBar() {
   const handleClickPath = () => {
     history.push('/pathfinding');
   }
-
+  console.log(history)
   return (
     <nav id='navbar'>
       <button onClick={handleClickSort}>
@@ -21,6 +22,7 @@ export default function NavBar() {
       <button onClick={handleClickPath}>
         Pathfinding
         </button>
+      {history.location.pathname !== '/pathfinding' ? <Slider /> : null}
     </nav>
   )
 }

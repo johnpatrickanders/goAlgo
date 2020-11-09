@@ -4,13 +4,21 @@ import insertionSort from './insertionSort';
 import selectionSort from './selectionSort';
 import quickSort from './quickSort';
 import './SortingViz.css';
+import Slider from './SpeedControls';
 
 export default function SortingViz() {
   const [array, setArray] = useState([]);
-  const [NUM_BARS, SET_NUM_BARS] = useState(200);
+  const [NUM_BARS, SET_NUM_BARS] = useState(20);
 
-  const SPEED = 50;
-  // const NUM_BARS = 400;
+  // let SPEED = 150;
+  let [SPEED, setSpeed] = useState(150)
+  const handleChange = (e) => {
+    SPEED = e.target.value;
+    setSpeed(SPEED)
+  }
+  let convertedSpeed = 301 - SPEED;
+
+  // const BarVars = React.createContext({ speed: SPEED, numBars: NUM_BARS })
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
@@ -66,7 +74,7 @@ export default function SortingViz() {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           if (barOneIdx > barTwoIdx) {
@@ -75,7 +83,7 @@ export default function SortingViz() {
             barTwo.height = tempHeight;
             barOne.backgroundColor = 'purple';
           }
-        }, i * SPEED);
+        }, i * convertedSpeed);
       }
       numStops += 1;
       // stopTimeouts.push(stop1);
@@ -104,7 +112,7 @@ export default function SortingViz() {
             let bar = bars[i]
             bar.style.backgroundColor = currentBarColor;
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           if (currIdx !== otherIdx) {
@@ -131,8 +139,8 @@ export default function SortingViz() {
           // setTimeout(() => {
           //   barTwo.backgroundColor = 'green';
 
-          // }, i * SPEED)
-        }, i * SPEED)
+          // }, i * convertedSpeed)
+        }, i * convertedSpeed)
       }
     }
   }
@@ -151,7 +159,7 @@ export default function SortingViz() {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
@@ -168,7 +176,7 @@ export default function SortingViz() {
             barTwo.height = tempHeight;
             barOne.backgroundColor = 'purple';
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       }
     }
 
@@ -197,7 +205,7 @@ export default function SortingViz() {
             barOne.backgroundColor = 'yellow';
             barTwo.backgroundColor = 'yellow';
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           if (barOneIdx !== 0 && barTwoIdx !== 0 // normal "while" swap
@@ -217,7 +225,7 @@ export default function SortingViz() {
           }
           // barPivot.backgroundColor = 'green';
           barTwo.backgroundColor = 'green';
-        }, i * SPEED)
+        }, i * convertedSpeed)
       }
     }
 
@@ -240,6 +248,9 @@ export default function SortingViz() {
           >
           </div>
         ))}
+      </div>
+      <div className="slidecontainer">
+        <input onChange={handleChange} type="range" min="1" max="300" value={SPEED} className="slider" id="myRange" />
       </div>
       <div className="buttons">
         <button onClick={stop}>Stop</button>

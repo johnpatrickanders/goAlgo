@@ -7,3 +7,13 @@
   /* margin: 10; */
   /* padding: 0 */
 }
+
+.slidecontainer {
+  display: flex;
+  justify-items: flex-end;
+  width: 30%; /* Width of the outside container */
+}
+
+.hidden {
+  visibility: hidden;
+}
