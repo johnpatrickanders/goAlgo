@@ -54,6 +54,7 @@ export default function SortingViz() {
 
   const bubbleSortAnimate = () => {
     const animations = bubbleSort(array);
+    console.log(animations)
     for (let i = 0; i < animations.length && !stopLoop; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
@@ -86,10 +87,11 @@ export default function SortingViz() {
 
   const insertionSortAnimate = () => {
     const animations = insertionSort(array);
+    console.log(array.length)
+    console.log(animations)
     const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
-      const barsArr = [...bars]
-      console.log('BARS:', bars)
+      // const barsArr = [...bars]
       let [currIdx, otherIdx] = animations[i];
       const barOne = bars[currIdx].style;
       const barTwo = bars[otherIdx].style;
@@ -105,11 +107,9 @@ export default function SortingViz() {
         }, i * SPEED)
       } else {
         setTimeout(() => {
-          console.log(animations[i])
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
             const splice = (currIdx, startIdx, subArr) => {
-              console.log('SPLICE:', currIdx)
               while (currIdx > startIdx) {
                 const temp = subArr[currIdx].style.height;
                 subArr[currIdx].style.height = subArr[currIdx - 1].style.height
@@ -122,7 +122,6 @@ export default function SortingViz() {
             }
             for (otherIdx; otherIdx < currIdx; otherIdx++) {
               if (currIdx === initIdx) {
-                console.log('CURRENT===INIT');
                 splice(currIdx, otherIdx, bars)
                 initIdx = -1;
                 otherIdx -= 1;
