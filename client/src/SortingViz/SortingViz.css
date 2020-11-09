@@ -31,6 +31,7 @@ body {
   justify-content: center;
   align-items: auto;
   margin-top: 20px;
+  overflow: auto;
 }
 
 button {
@@ -39,9 +40,10 @@ button {
   border: 3px;
   border-radius: 3px;
   border-color: orangered;
-  height: 30px;
+  height: auto;
   width: auto;
   margin: 20px;
+
 }
 
 button:hover {
