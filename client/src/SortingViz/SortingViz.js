@@ -115,6 +115,7 @@ export default function SortingViz() {
         }, i * convertedSpeed)
       } else {
         setTimeout(() => {
+          let [prevCurrIdx, prevOtherIdx] = animations[i - 3] ? animations[i - 3] : [0, 0]
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
             const splice = (currIdx, startIdx, subArr) => {
@@ -174,7 +175,7 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+            barOne.backgroundColor = 'white';
           }
         }, i * convertedSpeed)
       }
