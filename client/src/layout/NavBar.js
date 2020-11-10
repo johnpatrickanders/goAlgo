@@ -22,7 +22,6 @@ export default function NavBar() {
       <button onClick={handleClickPath}>
         Pathfinding
         </button>
-      {history.location.pathname !== '/pathfinding' ? <Slider /> : null}
     </nav>
   )
 }

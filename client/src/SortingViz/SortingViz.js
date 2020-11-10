@@ -81,7 +81,7 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+            barOne.backgroundColor = 'white';
           }
         }, i * convertedSpeed);
       }
@@ -249,8 +249,17 @@ export default function SortingViz() {
           </div>
         ))}
       </div>
-      <div className="slidecontainer">
-        <input onChange={handleChange} type="range" min="1" max="300" value={SPEED} className="slider" id="myRange" />
+      <div className="slidercontainer">
+        <input onChange={handleChange}
+          type="range"
+          min="1"
+          max="300"
+          value={SPEED}
+          className="slider"
+          id="myRange"
+          name='Speed'
+        />
+        <label className='sliderlabel' for='myRange'>Speed</label>
       </div>
       <div className="buttons">
         <button onClick={stop}>Stop</button>

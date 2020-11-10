@@ -4,16 +4,6 @@
   display: flex;
   justify-self: flex-start;
   border-radius: 5px;
-  /* margin: 10; */
+  /* margin-left: 9; */
   /* padding: 0 */
-}
-
-.slidecontainer {
-  display: flex;
-  justify-items: flex-end;
-  width: 30%; /* Width of the outside container */
-}
-
-.hidden {
-  visibility: hidden;
 }

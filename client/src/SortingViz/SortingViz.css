@@ -1,5 +1,6 @@
 body {
   background-color:  rgb(8, 8, 60);
+  font-family: "Geneva";
 }
 
 .algo-container {
@@ -48,4 +49,20 @@ button {
 
 button:hover {
   background-color: peachpuff;
+}
+
+.slidercontainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 35px;
+  width: 85vw;
+}
+
+.sliderlabel {
+  font-size: 16pt;
+  display: center;
+  margin-top: 20px;
+  align-self: center;
+  color: whitesmoke;
 }
