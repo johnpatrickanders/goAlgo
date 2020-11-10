@@ -8,8 +8,8 @@ body {
   flex-direction: column;
   padding: 20px;
   max-width: 95vw;
-  min-height: 100vh / 1.5;
-  max-height: 100vh / 1.5;
+  height: 100vh / 1.5;
+  /* max-height: 100vh / 1.5; */
   /* border: 10px; */
   border-radius: 5pt;
   /* stroke: black; */
