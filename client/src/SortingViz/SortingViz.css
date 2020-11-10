@@ -1,5 +1,5 @@
 body {
-  background-color:  rgb(8, 8, 60);
+  background-color:  #08083c;
   font-family: "Geneva";
 }
 
@@ -13,7 +13,7 @@ body {
   border-radius: 5pt;
   /* stroke: black; */
   /* stroke-width: 2pt; */
-  background-color: rgb(48, 67, 67);
+  background-color: #304343;
   margin: auto;
   margin-top: 9px;
   /* margin-right: 50px */
