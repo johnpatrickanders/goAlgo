@@ -8,6 +8,7 @@ body {
   flex-direction: column;
   padding: 20px;
   max-width: 95vw;
+  min-height: 100vh / 1.5;
   max-height: 100vh / 1.5;
   /* border: 10px; */
   border-radius: 5pt;
@@ -20,11 +21,11 @@ body {
 }
 
 .array-container {
+  min-height: 660px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
   justify-items: center;
-
 }
 
 .buttons {
