@@ -4,13 +4,21 @@ import insertionSort from './insertionSort';
 import selectionSort from './selectionSort';
 import quickSort from './quickSort';
 import './SortingViz.css';
+import Slider from './SpeedControls';
 
 export default function SortingViz() {
   const [array, setArray] = useState([]);
-  const [NUM_BARS, SET_NUM_BARS] = useState(200);
+  const [NUM_BARS, SET_NUM_BARS] = useState(20);
 
-  const SPEED = 50;
-  // const NUM_BARS = 400;
+  // let SPEED = 150;
+  let [SPEED, setSpeed] = useState(150)
+  const handleChange = (e) => {
+    SPEED = e.target.value;
+    setSpeed(SPEED)
+  }
+  let convertedSpeed = 301 - SPEED;
+
+  // const BarVars = React.createContext({ speed: SPEED, numBars: NUM_BARS })
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
@@ -54,6 +62,7 @@ export default function SortingViz() {
 
   const bubbleSortAnimate = () => {
     const animations = bubbleSort(array);
+    console.log(animations)
     for (let i = 0; i < animations.length && !stopLoop; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
@@ -65,16 +74,16 @@ export default function SortingViz() {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           if (barOneIdx > barTwoIdx) {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+            barOne.backgroundColor = 'white';
           }
-        }, i * SPEED);
+        }, i * convertedSpeed);
       }
       numStops += 1;
       // stopTimeouts.push(stop1);
@@ -86,10 +95,11 @@ export default function SortingViz() {
 
   const insertionSortAnimate = () => {
     const animations = insertionSort(array);
+    console.log(array.length)
+    console.log(animations)
     const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
-      const barsArr = [...bars]
-      console.log('BARS:', bars)
+      // const barsArr = [...bars]
       let [currIdx, otherIdx] = animations[i];
       const barOne = bars[currIdx].style;
       const barTwo = bars[otherIdx].style;
@@ -102,14 +112,13 @@ export default function SortingViz() {
             let bar = bars[i]
             bar.style.backgroundColor = currentBarColor;
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
-          console.log(animations[i])
+          let [prevCurrIdx, prevOtherIdx] = animations[i - 3] ? animations[i - 3] : [0, 0]
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
             const splice = (currIdx, startIdx, subArr) => {
-              console.log('SPLICE:', currIdx)
               while (currIdx > startIdx) {
                 const temp = subArr[currIdx].style.height;
                 subArr[currIdx].style.height = subArr[currIdx - 1].style.height
@@ -122,7 +131,6 @@ export default function SortingViz() {
             }
             for (otherIdx; otherIdx < currIdx; otherIdx++) {
               if (currIdx === initIdx) {
-                console.log('CURRENT===INIT');
                 splice(currIdx, otherIdx, bars)
                 initIdx = -1;
                 otherIdx -= 1;
@@ -132,8 +140,8 @@ export default function SortingViz() {
           // setTimeout(() => {
           //   barTwo.backgroundColor = 'green';
 
-          // }, i * SPEED)
-        }, i * SPEED)
+          // }, i * convertedSpeed)
+        }, i * convertedSpeed)
       }
     }
   }
@@ -152,7 +160,7 @@ export default function SortingViz() {
           const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
@@ -167,9 +175,9 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'purple';
+            barOne.backgroundColor = 'white';
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       }
     }
 
@@ -198,7 +206,7 @@ export default function SortingViz() {
             barOne.backgroundColor = 'yellow';
             barTwo.backgroundColor = 'yellow';
           }
-        }, i * SPEED)
+        }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           if (barOneIdx !== 0 && barTwoIdx !== 0 // normal "while" swap
@@ -218,7 +226,7 @@ export default function SortingViz() {
           }
           // barPivot.backgroundColor = 'green';
           barTwo.backgroundColor = 'green';
-        }, i * SPEED)
+        }, i * convertedSpeed)
       }
     }
 
@@ -241,6 +249,18 @@ export default function SortingViz() {
           >
           </div>
         ))}
+      </div>
+      <div className="slidercontainer">
+        <input onChange={handleChange}
+          type="range"
+          min="1"
+          max="300"
+          value={SPEED}
+          className="slider"
+          id="myRange"
+          name='Speed'
+        />
+        <label className='sliderlabel' for='myRange'>Speed</label>
       </div>
       <div className="buttons">
         <button onClick={stop}>Stop</button>

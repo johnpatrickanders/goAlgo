@@ -1,28 +1,38 @@
 body {
   background-color:  rgb(8, 8, 60);
+  font-family: "Geneva";
 }
 
 .algo-container {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  width: 98vw;
-  height: 100vh / 1.5;
-  border: 10px;
+  max-width: 95vw;
+  max-height: 100vh / 1.5;
+  /* border: 10px; */
   border-radius: 5pt;
-  stroke: black;
-  stroke-width: 2pt;
+  /* stroke: black; */
+  /* stroke-width: 2pt; */
   background-color: rgb(48, 67, 67);
+  margin: auto;
+  margin-top: 9px;
+  /* margin-right: 50px */
 }
 
 .array-container {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  justify-items: center;
 
 }
 
 .buttons {
   display: flex;
   justify-content: center;
+  align-items: auto;
+  margin-top: 20px;
+  overflow: auto;
 }
 
 button {
@@ -31,11 +41,28 @@ button {
   border: 3px;
   border-radius: 3px;
   border-color: orangered;
-  height: 30px;
+  height: auto;
   width: auto;
   margin: 20px;
+
 }
 
 button:hover {
   background-color: peachpuff;
+}
+
+.slidercontainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-top: 35px;
+  width: 85vw;
+}
+
+.sliderlabel {
+  font-size: 16pt;
+  display: center;
+  margin-top: 20px;
+  align-self: center;
+  color: whitesmoke;
 }

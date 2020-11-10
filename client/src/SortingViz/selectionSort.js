@@ -7,7 +7,6 @@ export default function selectionSort(array) {
     let smallestIdx = startIdx;
     for (let i = startIdx + 1; i < array.length; i++) {
       const animation = {};
-      console.log('i', i)
       animation.comparison = [startIdx, i];
       if (array[i] < array[smallestIdx]) {
         smallestIdx = i;
