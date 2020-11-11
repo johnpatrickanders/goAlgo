@@ -6,14 +6,14 @@ const testGrid = [
 
 export default function depthFirstSearch(grid, startNode, endNode) {
 
-  const visitedNodesInOrder = [];
-  startNode.distance = 0;
-  const unvisitedNodes = getAllNodes(grid);
-  console.log('DFS grid:', grid)
+
+
 
   // while (unvisitedNodes.length >= 0) {
 
-  console.log('RESULT:', depthFirstSearchHelp(startNode, grid));
+  const pathOfNodes = depthFirstSearchHelp(startNode, grid)
+  console.log('RESULT:', pathOfNodes);
+  return pathOfNodes;
 
   // sortNodesByDistance(unvisitedNodes)
   // const nearestNode = unvisitedNodes.shift();
@@ -34,9 +34,7 @@ function depthFirstSearchHelp(currentNode, grid, neighbors, array = []) {
   if (currentNode.isFinish) return;
   currentNode.isVisited = true;
   array.push(currentNode);
-  // neighbors.forEach(neighbor => {
   depthFirstSearchHelp(neighbors[0], grid, neighbors, array);
-  // })
   return array;
 }
 

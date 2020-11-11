@@ -5,7 +5,8 @@ import Node from './Node/Node';
 import './PathfindingViz.css';
 
 export default function PathfindingViz() {
-  const [grid, setGrid] = useState([]);
+  let [grid, setGrid] = useState([]);
+  const [SPEED, SET_SPEED] = useState(1000)
 
   const START_NODE_ROW = 10;
   const START_NODE_COL = 15;
@@ -34,33 +35,56 @@ export default function PathfindingViz() {
 
   }, [])
 
-  const depthFirstSearchAnimate = () => {
-    console.log(grid)
-    const startNode = grid[START_NODE_ROW][START_NODE_COL];
-    const endNode = grid[END_NODE_ROW][END_NODE_COL];
-    const animations = depthFirstSearch(grid, startNode, endNode);
+  const depthFirstSearchAnimate = (pathOfNodes) => {
+    // console.log(grid);
+    // console.log(pathOfNodes)
+    for (let i = 0; i < pathOfNodes.length; i++) {
+      const interval = i * SPEED;
+      console.log("interval: ", interval)
+      setTimeout(() => {
+        // const newGrid = grid.slice();
+        const node = pathOfNodes[i];
+        console.log(node.row, node.col)
+        const newNode = {
+          ...node,
+          isVisited: true
+        };
+        // newNode.isVisited = true;
+        grid[node.row][node.col] = newNode;
+        const newGrid = [...grid]
+        setGrid(newGrid);
+      }, interval)
+    }
+  }
+
+  const depthFirstSearchVisualize = () => {
+    const gridCopy = [...grid];
+    const startNode = gridCopy[START_NODE_ROW][START_NODE_COL];
+    const endNode = gridCopy[END_NODE_ROW][END_NODE_COL];
+    const pathOfNodes = depthFirstSearch(gridCopy, startNode, endNode);
+    depthFirstSearchAnimate(pathOfNodes)
   }
 
   const dijkstraAnimate = () => {
 
   }
-
-  console.log(grid);
   return (
     <>
-      <button onClick={depthFirstSearchAnimate}>Find the Path</button>
+      <button onClick={depthFirstSearchVisualize}>Find the Path</button>
       <div className='grid'>
         {grid.map((row, rowIdx) => {
           return (
             <div key={rowIdx} className='grid-row'>
               {row.map((node, nodeIdx) => {
-                const { isStart, isFinish } = node;
+                const { isStart, isFinish, isVisited } = node;
+                // console.log(isVisited)
                 return (
                   <Node
                     isStart={isStart}
                     isFinish={isFinish}
                     key={nodeIdx}
                     test={'hello there'}
+                    isVisited={isVisited}
                   ></Node>
                 );
               })}
