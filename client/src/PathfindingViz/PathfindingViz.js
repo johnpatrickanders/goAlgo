@@ -19,8 +19,8 @@ export default function PathfindingViz() {
         const currentNode = {
           col,
           row,
-          isStart: row === 10 && col === 5,
-          isFinish: row === 10 && col === 45,
+          isStart: row === START_NODE_ROW && col === START_NODE_COL,
+          isFinish: row === END_NODE_ROW && col === END_NODE_COL,
           distance: Infinity,
           isVisited: false,
           isWall: false,

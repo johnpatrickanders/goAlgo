@@ -9,30 +9,34 @@ export default function depthFirstSearch(grid, startNode, endNode) {
   const visitedNodesInOrder = [];
   startNode.distance = 0;
   const unvisitedNodes = getAllNodes(grid);
+  console.log('DFS grid:', grid)
 
-  while (unvisitedNodes.length >= 0) {
+  // while (unvisitedNodes.length >= 0) {
 
-    console.log(depthFirstSearchHelp(unvisitedNodes, startNode, endNode, grid));
+  console.log('RESULT:', depthFirstSearchHelp(startNode, grid));
 
-    // sortNodesByDistance(unvisitedNodes)
-    // const nearestNode = unvisitedNodes.shift();
-    // nearestNode.isVisited = true;
-    // if (nearestNode === endNode) return visitedNodesInOrder;
-    // updateNeighbors(nearestNode, grid);
-  }
+  // sortNodesByDistance(unvisitedNodes)
+  // const nearestNode = unvisitedNodes.shift();
+  // nearestNode.isVisited = true;
+  // if (nearestNode === endNode) return visitedNodesInOrder;
+  // updateNeighbors(nearestNode, grid);
+  // }
 }
 
 function sortNodesByDistance(unvisitedNodes) {
   unvisitedNodes.sort((nodeOne, nodeTwo) => nodeOne.distance - nodeTwo.distance);
 }
 
-function depthFirstSearchHelp(array, currentNode, endNode, grid) {
-  if (currentNode === endNode) return;
-  const neighbors = getNeighbors(currentNode, grid);
+function depthFirstSearchHelp(currentNode, grid, neighbors, array = []) {
+  neighbors = getNeighbors(currentNode, grid);
+  console.log('array:', array);
+  console.log('current node:', currentNode)
+  if (currentNode.isFinish) return;
+  currentNode.isVisited = true;
   array.push(currentNode);
-  neighbors.forEach(child => {
-    depthFirstSearch(array, child, endNode)
-  })
+  // neighbors.forEach(neighbor => {
+  depthFirstSearchHelp(neighbors[0], grid, neighbors, array);
+  // })
   return array;
 }
 
@@ -40,10 +44,10 @@ function depthFirstSearchHelp(array, currentNode, endNode, grid) {
 function getNeighbors(node, grid) {
   const neighbors = [];
   const { col, row } = node;
-  if (row > 0) neighbors.push(grid[row - 1][col]); // "top"
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]); // "bottom"
-  if (col > 0) neighbors.push(grid[row][col - 1]) // "left"
-  if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]) // "right"
+  if (row > 0 && !grid[row - 1][col].isVisited) neighbors.push(grid[row - 1][col]); // "top"
+  if (col < grid[0].length - 1 && !grid[row][col + 1].isVisited) neighbors.push(grid[row][col + 1]) // "right"
+  if (row < grid.length - 1 && !grid[row + 1][col].isVisited) neighbors.push(grid[row + 1][col]); // "bottom"
+  if (col > 0 && !grid[row][col - 1].isVisited) neighbors.push(grid[row][col - 1]) // "left"
   return neighbors;
 }
 
@@ -57,11 +61,9 @@ function updateNeighbors(node, grid) {
 function getAllNodes(grid) {
   const nodes = [];
   for (const row of grid) {
-    console.log(row)
     for (const node in row) {
       nodes.push(node);
     }
   }
-  console.log(nodes)
   return nodes;
 }
