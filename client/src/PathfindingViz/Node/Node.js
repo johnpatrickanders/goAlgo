@@ -13,7 +13,7 @@ export default class Node extends React.Component {
   }
 
   depthFirstSearch(array) {
-    array.push(this.name);
+    array.push(this.key);
     this.children.forEach(child => {
       child.depthFirstSearch(array)
     })

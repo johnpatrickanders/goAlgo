@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import depthFirstSearch from './depthFirstSearch';
 import Node from './Node/Node';
 
 import './PathfindingViz.css';
 
 export default function PathfindingViz() {
   const [grid, setGrid] = useState([]);
+
+  const START_NODE_ROW = 10;
+  const START_NODE_COL = 15;
+  const END_NODE_ROW = 10;
+  const END_NODE_COL = 35;
 
   useEffect(() => {
     for (let row = 0; row < 20; row++) {
@@ -28,6 +34,13 @@ export default function PathfindingViz() {
 
   }, [])
 
+  const depthFirstSearchAnimate = () => {
+    console.log(grid)
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const endNode = grid[END_NODE_ROW][END_NODE_COL];
+    const animations = depthFirstSearch(grid, startNode, endNode);
+  }
+
   const dijkstraAnimate = () => {
 
   }
@@ -35,7 +48,7 @@ export default function PathfindingViz() {
   console.log(grid);
   return (
     <>
-      <button onClick={dijkstraAnimate}>Find the Path</button>
+      <button onClick={depthFirstSearchAnimate}>Find the Path</button>
       <div className='grid'>
         {grid.map((row, rowIdx) => {
           return (
