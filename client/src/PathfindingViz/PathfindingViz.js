@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import depthFirstSearch from './depthFirstSearch';
 import breadthFirstSearch from './breadthFirstSearch';
+import dijkstra from './dijkstra';
 import Node from './Node/Node';
 
 import './PathfindingViz.css';
@@ -76,10 +77,14 @@ export default function PathfindingViz() {
   }
 
   const dijkstraAnimate = () => {
-
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const endNode = grid[END_NODE_ROW][END_NODE_COL];
+    const pathOfNodes = dijkstra(grid, startNode, endNode);
+    console.log(pathOfNodes);
   }
   return (
     <>
+      <button onClick={() => dijkstraAnimate()}>Dijkstra</button>
       <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
       <button onClick={() => breadthFirstSearchVisualize()}>Breadth First Search</button>
       <div className='grid'>

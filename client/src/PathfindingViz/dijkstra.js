@@ -1,16 +1,21 @@
 export default function depthFirstSearch(grid, startNode, endNode) {
 
   const visitedNodesInOrder = [];
+
   startNode.distance = 0;
   const unvisitedNodes = getAllNodes(grid);
-
-  while (unvisitedNodes.length >= 0) {
+  // console.log(unvisitedNodes);
+  let i = 10;
+  while (unvisitedNodes.length > 0) {
     sortNodesByDistance(unvisitedNodes)
     const nearestNode = unvisitedNodes.shift();
     nearestNode.isVisited = true;
     if (nearestNode === endNode) return visitedNodesInOrder;
-    updateNeighbors(nearestNode, grid)
+    updateNeighbors(nearestNode, grid);
+    visitedNodesInOrder.push(nearestNode);
+    i--;
   }
+
 }
 
 function sortNodesByDistance(unvisitedNodes) {
@@ -20,10 +25,10 @@ function sortNodesByDistance(unvisitedNodes) {
 function getNeighbors(node, grid) {
   const neighbors = [];
   const { col, row } = node;
-  if (row > 0) neighbors.push(grid[row - 1][col]); // "top"
-  if (row < grid.length - 1) neighbors.push(grid[row + 1][col]); // "bottom"
-  if (col > 0) neighbors.push(grid[row][col - 1]) // "left"
-  if (col < grid[0][col].length - 1) neighbors.push(grid[row][col + 1]) // "bottom"
+  if (row > 0 && !grid[row - 1][col].isVisited) neighbors.push(grid[row - 1][col]); // "top"
+  if (col < grid[0].length - 1 && !grid[row][col + 1].isVisited) neighbors.push(grid[row][col + 1]) // "right"
+  if (row < grid.length - 1 && !grid[row + 1][col].isVisited) neighbors.push(grid[row + 1][col]); // "bottom"
+  if (col > 0 && !grid[row][col - 1].isVisited) neighbors.push(grid[row][col - 1]) // "left"
   return neighbors;
 }
 
