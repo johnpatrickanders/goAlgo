@@ -12,10 +12,28 @@ export default class Node extends React.Component {
   }
 
   render() {
-    const extraClassName = this.props.isFinish ? 'node-finish'
-      : this.props.isStart ? 'node-start'
-        : this.props.isVisited ? 'node-visited'
+    const {
+      isFinish,
+      isStart,
+      isVisited,
+      location,
+      col,
+      row,
+      onMouseDown,
+      onMouseEnter,
+      onMouseUp
+    } = this.props;
+    const extraClassName = isFinish ? 'node-finish'
+      : isStart ? 'node-start'
+        : isVisited ? 'node-visited'
           : '';
-    return <div className={`node ${extraClassName}`} id={`loc-${this.props.location}`}></div>
+    return (
+      <div className={`node ${extraClassName}`}
+        id={`loc-${location}`}
+        onMouseDown={() => onMouseDown(row, col)}
+      // onMouseEnter={() => onMouseEnter(row, col)}
+      // onMouseUp={() => onMouseUp(row, col)}
+      ></div>
+    )
   }
 }

@@ -8,7 +8,7 @@ import './PathfindingViz.css';
 
 export default function PathfindingViz() {
   let [grid, setGrid] = useState([]);
-  const [SPEED, SET_SPEED] = useState(100)
+  const [SPEED, SET_SPEED] = useState(50)
 
   const START_NODE_ROW = 10;
   const START_NODE_COL = 15;
@@ -37,13 +37,21 @@ export default function PathfindingViz() {
     console.log('useEffect once?')
   }, [])
 
+  const handleMouseDown = (row, col) => {
+    const targetNode = grid[row][col];
+    targetNode.isWall = !targetNode.isWall;
+    const targetDomNode = document.getElementById(`loc-${row}-${col}`);
+    targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');
+    console.log(row, col, grid);
+  }
+
   const depthFirstSearchAnimate = (pathOfNodes) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
       console.log("interval: ", interval)
       setTimeout(() => {
         const currentPathNode = pathOfNodes[i];
-        const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`)
+        const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`);
         currentDomNode.classList.add('node-visited');
       }, interval)
     }
@@ -80,7 +88,8 @@ export default function PathfindingViz() {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const pathOfNodes = dijkstra(grid, startNode, endNode);
-    console.log(pathOfNodes);
+    // console.log(pathOfNodes);
+    breadthFirstSearchAnimate(pathOfNodes)
   }
   return (
     <>
@@ -101,6 +110,10 @@ export default function PathfindingViz() {
                     location={row + '-' + col}
                     test={'hello there'}
                     isVisited={isVisited}
+                    row={row}
+                    col={col}
+                    onMouseDown={handleMouseDown}
+                  // grid={grid}
                   ></Node>
                 );
               })}
