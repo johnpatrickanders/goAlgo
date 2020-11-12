@@ -59,7 +59,7 @@ export default function PathfindingViz() {
   }
   return (
     <>
-      <button onClick={() => depthFirstSearchVisualize()}>Find the Path</button>
+      <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
       <div className='grid'>
         {grid.map((row, rowIdx) => {
           return (

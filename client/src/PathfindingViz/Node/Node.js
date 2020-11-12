@@ -11,14 +11,6 @@ export default class Node extends React.Component {
     return this;
   }
 
-  // depthFirstSearch(array) {
-  //   array.push(this.key);
-  //   this.children.forEach(child => {
-  //     child.depthFirstSearch(array)
-  //   })
-  //   return array;
-  // }
-
   render() {
     const extraClassName = this.props.isFinish ? 'node-finish'
       : this.props.isStart ? 'node-start'
