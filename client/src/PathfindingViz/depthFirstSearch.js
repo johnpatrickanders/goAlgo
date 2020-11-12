@@ -1,9 +1,3 @@
-const testGrid = [
-  [7, 9, 10, 3, 5],
-  [1, 5, 3, 6, 8],
-  [5, 4, 6, 2, 9]
-]
-
 export default function depthFirstSearch(grid, startNode, endNode) {
 
   const pathOfNodes = depthFirstSearchHelp(startNode, grid)

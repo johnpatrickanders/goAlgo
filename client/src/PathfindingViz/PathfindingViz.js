@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import depthFirstSearch from './depthFirstSearch';
+import breadthFirstSearch from './breadthFirstSearch';
 import Node from './Node/Node';
 
 import './PathfindingViz.css';
@@ -54,12 +55,33 @@ export default function PathfindingViz() {
     depthFirstSearchAnimate(pathOfNodes)
   }
 
+  const breadthFirstSearchAnimate = (pathOfNodes) => {
+    for (let i = 0; i < pathOfNodes.length; i++) {
+      const interval = i * SPEED;
+      console.log("interval: ", interval)
+      setTimeout(() => {
+        const currentPathNode = pathOfNodes[i];
+        const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`)
+        currentDomNode.classList.add('node-visited');
+      }, interval)
+    }
+  }
+
+  const breadthFirstSearchVisualize = () => {
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const endNode = grid[END_NODE_ROW][END_NODE_COL];
+    const pathOfNodes = breadthFirstSearch(grid, startNode, endNode);
+    console.log(pathOfNodes)
+    // breadthFirstSearchAnimate(pathOfNodes)
+  }
+
   const dijkstraAnimate = () => {
 
   }
   return (
     <>
       <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
+      <button onClick={() => breadthFirstSearchVisualize()}>Breadth First Search</button>
       <div className='grid'>
         {grid.map((row, rowIdx) => {
           return (
