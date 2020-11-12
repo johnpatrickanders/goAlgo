@@ -72,7 +72,7 @@ export default function PathfindingViz() {
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const pathOfNodes = breadthFirstSearch(grid, startNode, endNode);
     console.log(pathOfNodes)
-    // breadthFirstSearchAnimate(pathOfNodes)
+    breadthFirstSearchAnimate(pathOfNodes)
   }
 
   const dijkstraAnimate = () => {
