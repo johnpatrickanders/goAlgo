@@ -3,7 +3,6 @@ import './Node.css'
 export default class Node extends React.Component {
   constructor(props) {
     super(props);
-    this.key = props.key;
     this.children = [];
   }
 
@@ -12,16 +11,19 @@ export default class Node extends React.Component {
     return this;
   }
 
-  depthFirstSearch(array) {
-    array.push(this.key);
-    this.children.forEach(child => {
-      child.depthFirstSearch(array)
-    })
-    return array;
-  }
+  // depthFirstSearch(array) {
+  //   array.push(this.key);
+  //   this.children.forEach(child => {
+  //     child.depthFirstSearch(array)
+  //   })
+  //   return array;
+  // }
 
   render() {
-    const extraClassName = this.props.isFinish ? 'node-finish' : this.props.isStart ? 'node-start' : this.props.isVisited ? 'node-visited' : '';
-    return <div className={`node ${extraClassName}`}></div>
+    const extraClassName = this.props.isFinish ? 'node-finish'
+      : this.props.isStart ? 'node-start'
+        : this.props.isVisited ? 'node-visited'
+          : '';
+    return <div className={`node ${extraClassName}`} id={`loc-${this.props.location}`}></div>
   }
 }
