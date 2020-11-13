@@ -13,14 +13,17 @@ function depthFirstSearchHelp(currentNode, grid, neighbors, array = []) {
   console.log(currentNode, grid)
   if (!currentNode.isStart) {
     currentNode.isVisited = true;
-    array.push(currentNode);
+    if (array.length === 1 || currentNode !== array[array.length - 1]) {
+      array.push(currentNode);
+    }
   }
   neighbors = getNeighbors(currentNode, grid);
   // let nextNode = neighbors[0] ? neighbors[0] : array[array.length - 2]
   if (neighbors[0]) {
     depthFirstSearchHelp(neighbors[0], grid, neighbors, array);
-  } else {
-    depthFirstSearchHelp(array[array.length - 2], grid, neighbors, array);
+  } else if (array[array.length - 2] && getNeighbors(array[array.length - 2], grid)) {
+    array.pop()
+    depthFirstSearchHelp(array[array.length - 1], grid, neighbors, array);
   }
   return array;
 }
