@@ -255,13 +255,17 @@ export default function SortingViz() {
       <div className="slidercontainer">
         <input onChange={handleChange}
           type="range"
+          list='tickmarks'
           min="1"
-          max="300"
-          value={SPEED}
-          className="slider"
-          id="myRange"
+          max="301"
+          // value={SPEED}
+          // onChange={setSpeed}
+          step='60'
+          className="slidercontianer"
+          id="my-range"
           name='Speed'
         />
+
         <label className='sliderlabel' for='myRange'>Speed</label>
       </div>
       <div className="slidercontainer">

@@ -21,7 +21,7 @@ body {
 }
 
 .array-container {
-  min-height: 660px;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -74,8 +74,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-top: 35px;
-  width: 85vw;
+  margin-top: 40px;
+  width: 50vw;
 }
 
 .sliderlabel {
@@ -85,3 +85,45 @@ button:hover {
   align-self: center;
   color: whitesmoke;
 }
+
+
+#my-range {
+  width: 30%;
+  display: flex;
+  align-self: center;
+  /* position: absolute; */
+}
+          /* input[type="range"] {
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+          } */
+
+/* datalist {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: -23px;
+  padding-top: 0px;
+}
+.ticker {
+  display: flex;
+  background-color: black;
+  border-radius: 3px;
+  width: 1px;
+  height: 3px;
+  padding-bottom: 3px;
+} */
+
+/* option {
+  width: 2ex;
+  display: flex;
+  justify-content: center;
+  height: 42px;
+  align-items: end;
+  background-image: url(https://img.icons8.com/small/16/000000/inactive-state.png);
+  height: 4ex;
+  background-position-y: -15px;
+  background-position-x: center;
+  z-index: -1;
+} */
