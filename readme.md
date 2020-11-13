@@ -4,26 +4,26 @@ Sorting Algorithm visualizer, for helping Software Engineering Students understa
 MVP Features and User Stories are outlined below, along with some stretch goals/features that we hope to eventually incorporate.
 
 ## Features - MVP
-- [ ] Merge Sort
+- [ ] Sorting algorithms: Quick Sort, Insertion Sort, Merge Sort, Bubble Sort Algorithm Visualizations
+- [ ] Pathfinding algorithms: Dijkstra, Breadth First Search, Depth First Search
+    - [ ] Ability to add "walls" to grid and have pathfinders take these walls into account
+- [ ] Sliding scales for changing array size and speed
 - [ ] Generate New Array button
-- [ ] Sort button
-- [ ] Quick Sort, Heap Sort, Bubble Sort Algorithm Visualizations
 
+## User Stories
+- As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
 
 ## Backlog
-- [ ] Sliding scale for changing array size and speed
-- [ ] Translation to different languages
 - [ ] Darkmode
 - [ ] User comments below each Algo sorted by newest
     - [ ] Up/Downvoting like Reddit
 
 
-## User Stories
-- As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
 
 ## Frontend Routes
-- TODO
+- /
+- /pathfinding
 
-## Components
-Components to be organized as follows:
-- TODO
+## React Components
+- Basic divs, buttons, sliders
+- Basic hooks of useEffect, useState
