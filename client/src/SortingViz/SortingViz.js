@@ -33,11 +33,14 @@ export default function SortingViz() {
   let stopLoop = false;
   let numStops = 0;
 
-  const resetColors = () => {
+  const resetColors = (color) => {
     const bars = document.getElementsByClassName('array-bar');
+    // if (!color) color = 'orangered';
     for (let bar of bars) {
-      bar.style.backgroundColor = "orangered"
+      bar.style.backgroundColor = color;
     }
+    console.log(bars)
+    console.log("COLOOOOOORS");
   }
   const resetArray = () => {
     const array = [];
@@ -139,9 +142,11 @@ export default function SortingViz() {
               }
             }
           }
+          if (i === animations.length - 1) bars[currIdx - 1].style.backgroundColor = comparisonColor;
         }, i * convertedSpeed)
       }
     }
+    // resetColors(comparisonColor);
   }
 
   const selectionSortAnimate = () => {
@@ -272,11 +277,9 @@ export default function SortingViz() {
         <label className='sliderlabel' for='myBarRange'>Length</label>
       </div>
       <div className="buttons">
-        <button onClick={stop}>Stop</button>
-        <button onClick={resetColors}>Reset Colors</button>
+        {/* <button onClick={stop}>Stop</button> */}
+        {/* <button onClick={resetColors}>Reset Colors</button> */}
         <button onClick={resetArray}>Get New Array</button>
-
-        {/* <label for="sorting-options">Choose an algo</label> */}
         <select label='Choose an Algo' name="sorting-options" id="sorting-options">
           <option label='Bubble' value='0'></option>
           <option label='Insertion' value='1'></option>
