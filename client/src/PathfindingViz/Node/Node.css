@@ -21,5 +21,6 @@
 }
 
 .node-is-wall {
-  background-color: gray;
+  background-color: black;
+  border-radius: 50%;
 }

@@ -31,8 +31,8 @@ export default class Node extends React.Component {
       <div className={`node ${extraClassName}`}
         id={`loc-${location}`}
         onMouseDown={() => onMouseDown(row, col)}
-      // onMouseEnter={() => onMouseEnter(row, col)}
-      // onMouseUp={() => onMouseUp(row, col)}
+        onMouseEnter={() => onMouseEnter(row, col)}
+        onMouseUp={() => onMouseUp()}
       ></div>
     )
   }

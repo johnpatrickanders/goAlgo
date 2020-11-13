@@ -8,7 +8,8 @@ import './PathfindingViz.css';
 
 export default function PathfindingViz() {
   let [grid, setGrid] = useState([]);
-  const [SPEED, SET_SPEED] = useState(25)
+  const [SPEED, SET_SPEED] = useState(75);
+  let mousePressed = false;
 
   const START_NODE_ROW = 10;
   const START_NODE_COL = 15;
@@ -41,14 +42,28 @@ export default function PathfindingViz() {
     const targetNode = grid[row][col];
     if (row === START_NODE_ROW && col === START_NODE_COL
       || row === END_NODE_ROW && col === END_NODE_COL) {
-      return
+      return;
     }
+    mousePressed = true;
     targetNode.isWall = !targetNode.isWall;
     const targetDomNode = document.getElementById(`loc-${row}-${col}`);
     targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');
     console.log(row, col, grid);
   }
-
+  const handleMouseEnter = (row, col) => {
+    const targetNode = grid[row][col];
+    if (!mousePressed
+      || row === START_NODE_ROW && col === START_NODE_COL
+      || row === END_NODE_ROW && col === END_NODE_COL
+      || targetNode.isWall) return;
+    targetNode.isWall = !targetNode.isWall;
+    const targetDomNode = document.getElementById(`loc-${row}-${col}`);
+    targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');
+    console.log(row, col, grid);
+  }
+  const handleMouseUp = () => {
+    mousePressed = false;
+  }
   const depthFirstSearchAnimate = (pathOfNodes) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
@@ -117,7 +132,8 @@ export default function PathfindingViz() {
                     row={row}
                     col={col}
                     onMouseDown={handleMouseDown}
-                  // grid={grid}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseUp={handleMouseUp}
                   ></Node>
                 );
               })}
