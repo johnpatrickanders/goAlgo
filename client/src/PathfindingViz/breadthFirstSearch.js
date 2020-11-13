@@ -16,6 +16,7 @@ function breadthSearchFirstHelp(startNode, grid) {
   // let i = 10
   while (queue.length > 0) {
     const currentNode = queue.shift();
+    if (currentNode.isWall) continue;
     currentNode.isVisited = true;
     console.log(currentNode)
     if (currentNode.isFinish) return array;

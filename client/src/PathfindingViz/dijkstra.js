@@ -4,16 +4,17 @@ export default function depthFirstSearch(grid, startNode, endNode) {
 
   startNode.distance = 0;
   const unvisitedNodes = getAllNodes(grid);
-  // console.log(unvisitedNodes);
-  let i = 10;
   while (unvisitedNodes.length > 0) {
     sortNodesByDistance(unvisitedNodes)
     const nearestNode = unvisitedNodes.shift();
     nearestNode.isVisited = true;
-    if (nearestNode === endNode) return visitedNodesInOrder;
+    if (nearestNode.isWall) continue;
+    if (nearestNode === endNode || nearestNode.distance === Infinity) {
+      visitedNodesInOrder.shift();
+      return visitedNodesInOrder;
+    }
     updateNeighbors(nearestNode, grid);
     visitedNodesInOrder.push(nearestNode);
-    i--;
   }
 
 }

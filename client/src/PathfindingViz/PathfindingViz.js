@@ -8,7 +8,7 @@ import './PathfindingViz.css';
 
 export default function PathfindingViz() {
   let [grid, setGrid] = useState([]);
-  const [SPEED, SET_SPEED] = useState(50)
+  const [SPEED, SET_SPEED] = useState(25)
 
   const START_NODE_ROW = 10;
   const START_NODE_COL = 15;
@@ -39,6 +39,10 @@ export default function PathfindingViz() {
 
   const handleMouseDown = (row, col) => {
     const targetNode = grid[row][col];
+    if (row === START_NODE_ROW && col === START_NODE_COL
+      || row === END_NODE_ROW && col === END_NODE_COL) {
+      return
+    }
     targetNode.isWall = !targetNode.isWall;
     const targetDomNode = document.getElementById(`loc-${row}-${col}`);
     targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');

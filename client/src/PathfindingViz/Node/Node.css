@@ -3,6 +3,7 @@
   height: 25px;
   outline: 1px solid grey;
   display: inline-block;
+  border-radius: 3px;
   /* color: rgb(103, 61, 61);
   background-color: rosybrown; */
 }
