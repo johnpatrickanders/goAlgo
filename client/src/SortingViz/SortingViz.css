@@ -36,6 +36,24 @@ body {
   overflow: auto;
 }
 
+#sorting-options {
+  display: flex;
+  justify-content: center;
+  align-items: auto;
+  margin-top: 20px;
+  margin-left: 10%;
+  overflow: auto;
+  background-color: orangered;
+  opacity: 0.8;
+  font-size: 18pt;
+  border: 3px;
+  border-radius: 3px;
+  border-color: orangered;
+  height: auto;
+  width: auto;
+  margin: 20px;
+}
+
 button {
   font-size: 16pt;
   justify-self: space-between;

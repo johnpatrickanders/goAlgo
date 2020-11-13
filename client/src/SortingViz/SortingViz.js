@@ -33,20 +33,21 @@ export default function SortingViz() {
   let stopLoop = false;
   let numStops = 0;
 
-  const resetArray = () => {
-    const array = [];
-    for (let i = 0; i < NUM_BARS; i += 1) {
-      array.push(randomInt(5, maxBarHeight))
-    }
-    setArray(array)
-  }
-
   const resetColors = () => {
     const bars = document.getElementsByClassName('array-bar');
     for (let bar of bars) {
       bar.style.backgroundColor = "orangered"
     }
   }
+  const resetArray = () => {
+    const array = [];
+    for (let i = 0; i < NUM_BARS; i += 1) {
+      array.push(randomInt(5, maxBarHeight))
+    }
+    setArray(array)
+    resetColors();
+  }
+
 
   const stop = () => {
     if (!stopLoop) {
@@ -91,9 +92,6 @@ export default function SortingViz() {
         }, i * convertedSpeed);
       }
       numStops += 1;
-      // stopTimeouts.push(stop1);
-      // stopTimeouts.push(stop2);
-      // console.log(stopTimeouts)
     }
 
   }
@@ -141,10 +139,6 @@ export default function SortingViz() {
               }
             }
           }
-          // setTimeout(() => {
-          //   barTwo.backgroundColor = 'green';
-
-          // }, i * convertedSpeed)
         }, i * convertedSpeed)
       }
     }
@@ -168,10 +162,6 @@ export default function SortingViz() {
       } else {
         setTimeout(() => {
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
-          // const prevSortedBar = barOneIdx > 0 ? bars[barOneIdx - 1].style : barTwo;
-          // if (barTwo.height < prevSortedBar.height) {
-          //   barTwo.backgroundColor = 'yellow'
-          // }
           if (barOneIdx !== prevBarOneIdx
             || barTwoIdx !== prevBarTwoIdx
             || barTwoIdx === array.length - 1
@@ -203,9 +193,6 @@ export default function SortingViz() {
           barPivot.backgroundColor = swapColor;
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-          // if (barOneIdx === barTwoIdx) {
-          //   barTwo.backgroundColor = 'orange';
-          // }
           if (barOneIdx === pivotIdx && barTwoIdx > 0) {
             barOne.backgroundColor = 'yellow';
             barTwo.backgroundColor = 'yellow';
@@ -233,7 +220,13 @@ export default function SortingViz() {
         }, i * convertedSpeed)
       }
     }
+  }
 
+  const animateAlgo = () => {
+    const algos = [bubbleSortAnimate, insertionSortAnimate, selectionSortAnimate, quickSortAnimate]
+    const algoIdxString = document.getElementById('sorting-options').options.selectedIndex;
+    const algoIdx = Number(algoIdxString)
+    algos[algoIdx]();
   }
 
   return (
@@ -282,12 +275,17 @@ export default function SortingViz() {
         <button onClick={stop}>Stop</button>
         <button onClick={resetColors}>Reset Colors</button>
         <button onClick={resetArray}>Get New Array</button>
-        <button onClick={bubbleSortAnimate}>Bubble Sort</button>
-        <button onClick={insertionSortAnimate}>Insertion Sort</button>
-        <button onClick={selectionSortAnimate}>Selection Sort</button>
-        <button onClick={quickSortAnimate}>Quick Sort</button>
+
+        {/* <label for="sorting-options">Choose an algo</label> */}
+        <select label='Choose an Algo' name="sorting-options" id="sorting-options">
+          <option label='Bubble' value='0'></option>
+          <option label='Insertion' value='1'></option>
+          <option label='Selection' value='2'></option>
+          <option label='Quick' value='3'></option>
+        </select>
+        <button onClick={animateAlgo}>Sort!</button>
       </div>
-    </div>
+    </div >
   )
 
 }
