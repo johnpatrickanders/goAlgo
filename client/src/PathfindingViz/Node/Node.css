@@ -24,3 +24,7 @@
   background-color: black;
   border-radius: 50%;
 }
+
+.node-short-visited {
+  background-color: purple;
+}
