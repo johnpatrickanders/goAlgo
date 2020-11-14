@@ -1,29 +1,8 @@
-# FEATURES & User Stories
-Sorting Algorithm visualizer, for helping Software Engineering Students understand and nail common algorithms.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-MVP Features and User Stories are outlined below, along with some stretch goals/features that we hope to eventually incorporate.
-
-## Features - MVP
-- [ ] Sorting algorithms: Quick Sort, Insertion Sort, Merge Sort, Bubble Sort Algorithm Visualizations
-- [ ] Pathfinding algorithms: Dijkstra, Breadth First Search, Depth First Search
-    - [ ] Ability to add "walls" to grid and have pathfinders take these walls into account
-- [ ] Sliding scales for changing array size and speed
-- [ ] Generate New Array button
-
-## User Stories
-- As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
-
-## Backlog
-- [ ] Darkmode
-- [ ] User comments below each Algo sorted by newest
-    - [ ] Up/Downvoting like Reddit
+Your React App will live here.  While is development, run this application from this location using `npm start`.
 
 
+No environment variables are needed to run this application in development, but be sure to set the REACT_APP_BASE_URL environment variable in heroku!
 
-## Frontend Routes
-- /
-- /pathfinding
-
-## React Components
-- Basic divs, buttons, sliders
-- Basic hooks of useEffect, useState
+This app will be automatically built when you deploy to heroku, please see the `heroku-postbuild` script in your `express.js` applications `package.json` to see how this works.
