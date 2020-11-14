@@ -8,9 +8,14 @@ import Slider from './SpeedControls';
 
 export default function SortingViz() {
   const [array, setArray] = useState([]);
-  const [NUM_BARS, SET_NUM_BARS] = useState(20);
+  let [NUM_BARS, SET_NUM_BARS] = useState(20);
+  const handleBarChange = (e) => {
+    NUM_BARS = e.target.value;
+    SET_NUM_BARS(NUM_BARS);
+    resetArray()
+    resetColors()
+  }
 
-  // let SPEED = 150;
   let [SPEED, setSpeed] = useState(150)
   const handleChange = (e) => {
     SPEED = e.target.value;
@@ -18,7 +23,9 @@ export default function SortingViz() {
   }
   let convertedSpeed = 301 - SPEED;
 
-  // const BarVars = React.createContext({ speed: SPEED, numBars: NUM_BARS })
+  let comparisonColor = 'green';
+  let swapColor = 'white';
+  let otherColor = 'orange';
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
   const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
@@ -26,28 +33,30 @@ export default function SortingViz() {
   let stopLoop = false;
   let numStops = 0;
 
+  const resetColors = (color) => {
+    const bars = document.getElementsByClassName('array-bar');
+    // if (!color) color = 'orangered';
+    for (let bar of bars) {
+      bar.style.backgroundColor = color;
+    }
+    console.log(bars)
+    console.log("COLOOOOOORS");
+  }
   const resetArray = () => {
     const array = [];
     for (let i = 0; i < NUM_BARS; i += 1) {
       array.push(randomInt(5, maxBarHeight))
     }
     setArray(array)
+    resetColors();
   }
 
-  const resetColors = () => {
-    const bars = document.getElementsByClassName('array-bar');
-    for (let bar of bars) {
-      bar.style.backgroundColor = "orangered"
-    }
-  }
 
   const stop = () => {
-    // for (let i = 0; i < array.length * 3; i++) {
     if (!stopLoop) {
       stopLoop = !stopLoop;
       stopLoop = !stopLoop;
     }
-    // let i = stopTimeouts.length - 1;
     while (numStops >= 0) {
       clearTimeout(numStops);
       console.log("STOPPPPPP");
@@ -71,7 +80,7 @@ export default function SortingViz() {
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
+          const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
         }, i * convertedSpeed)
@@ -81,14 +90,11 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'white';
+            barOne.backgroundColor = otherColor;
           }
         }, i * convertedSpeed);
       }
       numStops += 1;
-      // stopTimeouts.push(stop1);
-      // stopTimeouts.push(stop2);
-      // console.log(stopTimeouts)
     }
 
   }
@@ -99,15 +105,14 @@ export default function SortingViz() {
     console.log(animations)
     const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
-      // const barsArr = [...bars]
       let [currIdx, otherIdx] = animations[i];
       const barOne = bars[currIdx].style;
       const barTwo = bars[otherIdx].style;
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
-          barOne.backgroundColor = 'orange';
+          const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor; // if the index falls on the "swap" value...
+          barOne.backgroundColor = otherColor;
           for (let i = currIdx - 1; i >= 0; i--) {
             let bar = bars[i]
             bar.style.backgroundColor = currentBarColor;
@@ -137,13 +142,11 @@ export default function SortingViz() {
               }
             }
           }
-          // setTimeout(() => {
-          //   barTwo.backgroundColor = 'green';
-
-          // }, i * convertedSpeed)
+          if (i === animations.length - 1) bars[currIdx - 1].style.backgroundColor = comparisonColor;
         }, i * convertedSpeed)
       }
     }
+    // resetColors(comparisonColor);
   }
 
   const selectionSortAnimate = () => {
@@ -157,17 +160,13 @@ export default function SortingViz() {
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
+          const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor; // if the index falls on the "swap" value...
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
         }, i * convertedSpeed)
       } else {
         setTimeout(() => {
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
-          // const prevSortedBar = barOneIdx > 0 ? bars[barOneIdx - 1].style : barTwo;
-          // if (barTwo.height < prevSortedBar.height) {
-          //   barTwo.backgroundColor = 'yellow'
-          // }
           if (barOneIdx !== prevBarOneIdx
             || barTwoIdx !== prevBarTwoIdx
             || barTwoIdx === array.length - 1
@@ -175,7 +174,7 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'white';
+            barOne.backgroundColor = otherColor;
           }
         }, i * convertedSpeed)
       }
@@ -195,13 +194,10 @@ export default function SortingViz() {
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const currentBarColor = i % 3 === 0 ? 'blue' : 'green'; // if the index falls on the "swap" value...
-          barPivot.backgroundColor = 'purple';
+          const currentBarColor = i % 3 === 0 ? otherColor : comparisonColor; // if the index falls on the "swap" value...
+          barPivot.backgroundColor = swapColor;
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-          // if (barOneIdx === barTwoIdx) {
-          //   barTwo.backgroundColor = 'orange';
-          // }
           if (barOneIdx === pivotIdx && barTwoIdx > 0) {
             barOne.backgroundColor = 'yellow';
             barTwo.backgroundColor = 'yellow';
@@ -214,22 +210,28 @@ export default function SortingViz() {
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barOne.backgroundColor = 'green';
-            barTwo.backgroundColor = 'green';
+            barOne.backgroundColor = comparisonColor;
+            barTwo.backgroundColor = comparisonColor;
           } else if (barOneIdx === pivotIdx && barTwoIdx > 0) { // special "pivot" swap
-            barPivot.backgroundColor = 'purple';
+            barPivot.backgroundColor = swapColor;
             const tempHeight = barOne.height;
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
-            barPivot.backgroundColor = 'green';
+            barPivot.backgroundColor = comparisonColor;
 
           }
-          // barPivot.backgroundColor = 'green';
-          barTwo.backgroundColor = 'green';
+          // barPivot.backgroundColor = comparisonColor;
+          barTwo.backgroundColor = comparisonColor;
         }, i * convertedSpeed)
       }
     }
+  }
 
+  const animateAlgo = () => {
+    const algos = [bubbleSortAnimate, insertionSortAnimate, selectionSortAnimate, quickSortAnimate]
+    const algoIdxString = document.getElementById('sorting-options').options.selectedIndex;
+    const algoIdx = Number(algoIdxString)
+    algos[algoIdx]();
   }
 
   return (
@@ -253,25 +255,44 @@ export default function SortingViz() {
       <div className="slidercontainer">
         <input onChange={handleChange}
           type="range"
+          list='tickmarks'
           min="1"
-          max="300"
-          value={SPEED}
-          className="slider"
-          id="myRange"
+          max="301"
+          // value={SPEED}
+          // onChange={setSpeed}
+          step='60'
+          className="slidercontianer"
+          id="my-range"
           name='Speed'
         />
+
         <label className='sliderlabel' for='myRange'>Speed</label>
       </div>
-      <div className="buttons">
-        <button onClick={stop}>Stop</button>
-        <button onClick={resetColors}>Reset Colors</button>
-        <button onClick={resetArray}>Get New Array</button>
-        <button onClick={bubbleSortAnimate}>Bubble Sort</button>
-        <button onClick={insertionSortAnimate}>Insertion Sort</button>
-        <button onClick={selectionSortAnimate}>Selection Sort</button>
-        <button onClick={quickSortAnimate}>Quick Sort</button>
+      <div className="slidercontainer">
+        <input onChange={handleBarChange}
+          type="range"
+          min="8"
+          max="200"
+          value={NUM_BARS}
+          className="slider"
+          id="myBarRange"
+          name='Length'
+        />
+        <label className='sliderlabel' for='myBarRange'>Length</label>
       </div>
-    </div>
+      <div className="buttons">
+        {/* <button onClick={stop}>Stop</button> */}
+        {/* <button onClick={resetColors}>Reset Colors</button> */}
+        <button onClick={resetArray}>Get New Array</button>
+        <select label='Choose an Algo' name="sorting-options" id="sorting-options">
+          <option label='Bubble' value='0'></option>
+          <option label='Insertion' value='1'></option>
+          <option label='Selection' value='2'></option>
+          <option label='Quick' value='3'></option>
+        </select>
+        <button onClick={animateAlgo}>Sort!</button>
+      </div>
+    </div >
   )
 
 }
