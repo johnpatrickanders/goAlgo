@@ -33,11 +33,11 @@ export default function SortingViz() {
   let stopLoop = false;
   let numStops = 0;
 
-  const resetColors = () => {
+  const resetColors = (color) => {
     const bars = document.getElementsByClassName('array-bar');
     // if (!color) color = 'orangered';
     for (const bar of bars) {
-      bar.style.backgroundColor = 'orangered';
+      bar.style.backgroundColor = color;
     }
     // setArray(array)
   }
@@ -89,6 +89,9 @@ export default function SortingViz() {
             barOne.height = barTwo.height;
             barTwo.height = tempHeight;
             barOne.backgroundColor = otherColor;
+            if (barOneIdx === bars.length - 1) {
+              resetColors('green')
+            }
           }
         }, i * convertedSpeed);
       }
@@ -284,7 +287,7 @@ export default function SortingViz() {
         <button onClick={resetColors}>Reset Colors</button>
         <button onClick={() => {
           resetArray();
-          resetColors('orange-red');
+          resetColors('orangered');
         }}>Get New Array</button>
         <select label='Choose an Algo' name="sorting-options" id="sorting-options">
           <option label='Bubble' value='0'></option>
