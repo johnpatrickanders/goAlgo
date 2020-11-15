@@ -33,14 +33,13 @@ export default function SortingViz() {
   let stopLoop = false;
   let numStops = 0;
 
-  const resetColors = (color) => {
+  const resetColors = () => {
     const bars = document.getElementsByClassName('array-bar');
     // if (!color) color = 'orangered';
-    for (let bar of bars) {
-      bar.style.backgroundColor = color;
+    for (const bar of bars) {
+      bar.style.backgroundColor = 'orangered';
     }
-    console.log(bars)
-    console.log("COLOOOOOORS");
+    // setArray(array)
   }
   const resetArray = () => {
     const array = [];
@@ -48,7 +47,6 @@ export default function SortingViz() {
       array.push(randomInt(5, maxBarHeight))
     }
     setArray(array)
-    resetColors();
   }
 
 
@@ -246,7 +244,8 @@ export default function SortingViz() {
               backgroundColor: 'orangered',
               width: `${90 / NUM_BARS}vh`,
               display: 'inline-block',
-              margin: 1
+              margin: 1,
+              borderRadius: '10px'
             }}
           >
           </div>
@@ -282,8 +281,11 @@ export default function SortingViz() {
       </div>
       <div className="buttons">
         {/* <button onClick={stop}>Stop</button> */}
-        {/* <button onClick={resetColors}>Reset Colors</button> */}
-        <button onClick={resetArray}>Get New Array</button>
+        <button onClick={resetColors}>Reset Colors</button>
+        <button onClick={() => {
+          resetArray();
+          resetColors('orange-red');
+        }}>Get New Array</button>
         <select label='Choose an Algo' name="sorting-options" id="sorting-options">
           <option label='Bubble' value='0'></option>
           <option label='Insertion' value='1'></option>
