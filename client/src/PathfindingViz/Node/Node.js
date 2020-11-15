@@ -37,7 +37,9 @@ export default class Node extends React.Component {
         onMouseDown={() => onMouseDown(row, col)}
         onMouseEnter={() => onMouseEnter(row, col)}
         onMouseUp={() => onMouseUp()}
-      ></div>
+      >
+        <div className='inner-node'></div>
+      </div>
     )
   }
 }

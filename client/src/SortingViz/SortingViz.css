@@ -21,7 +21,7 @@ body {
 }
 
 .array-container {
-  min-height: 60vh;
+  min-height: 55vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
