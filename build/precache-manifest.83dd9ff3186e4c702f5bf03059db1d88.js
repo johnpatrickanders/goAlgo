@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "064538f98d810e214f82891b9bbf58a4",
+    "revision": "6173ec32873c62d6ea9212be51ad114a",
     "url": "/goAlgo/index.html"
   },
   {
-    "revision": "a0883025a2435793e0aa",
+    "revision": "a512383f512630e74e81",
     "url": "/goAlgo/static/css/main.7b200e7e.chunk.css"
   },
   {
-    "revision": "d896334ad3f7047a240c",
-    "url": "/goAlgo/static/js/2.55272684.chunk.js"
+    "revision": "8b7f4d88d7214f2405f5",
+    "url": "/goAlgo/static/js/2.dfad5138.chunk.js"
   },
   {
     "revision": "c64c486544348f10a6d6c716950bc223",
-    "url": "/goAlgo/static/js/2.55272684.chunk.js.LICENSE.txt"
+    "url": "/goAlgo/static/js/2.dfad5138.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a0883025a2435793e0aa",
-    "url": "/goAlgo/static/js/main.322c801d.chunk.js"
+    "revision": "a512383f512630e74e81",
+    "url": "/goAlgo/static/js/main.34eaefc8.chunk.js"
   },
   {
     "revision": "42c8bd7c086be49e41c6",
