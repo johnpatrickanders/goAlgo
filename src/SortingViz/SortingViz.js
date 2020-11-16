@@ -177,6 +177,8 @@ export default function SortingViz() {
             barTwo.height = tempHeight;
             barOne.backgroundColor = otherColor;
           }
+          if (i === animations.length - 1) resetColors('green');
+
         }, i * convertedSpeed)
       }
     }

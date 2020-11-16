@@ -73,7 +73,7 @@ button:hover {
   flex-direction: column;
   align-self: center;
   margin-top: 40px;
-  width: 30vw;
+  width: 10vw;
 }
 
 .sliderlabel {
@@ -84,9 +84,9 @@ button:hover {
   color: whitesmoke;
 }
 
-
+/*
 #my-range {
   width: 30%;
   display: flex;
   align-self: center;
-}
+} */
