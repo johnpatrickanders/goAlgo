@@ -79,7 +79,7 @@ button:hover {
 .sliderlabel {
   font-size: 16pt;
   display: center;
-  margin-top: 20px;
+  margin-top: 15px;
   align-self: center;
   color: whitesmoke;
 }
@@ -89,39 +89,4 @@ button:hover {
   width: 30%;
   display: flex;
   align-self: center;
-  /* position: absolute; */
 }
-          /* input[type="range"] {
-            width: 100%;
-            margin: 0;
-            box-sizing: border-box;
-          } */
-
-/* datalist {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  margin-top: -23px;
-  padding-top: 0px;
-}
-.ticker {
-  display: flex;
-  background-color: black;
-  border-radius: 3px;
-  width: 1px;
-  height: 3px;
-  padding-bottom: 3px;
-} */
-
-/* option {
-  width: 2ex;
-  display: flex;
-  justify-content: center;
-  height: 42px;
-  align-items: end;
-  background-image: url(https://img.icons8.com/small/16/000000/inactive-state.png);
-  height: 4ex;
-  background-position-y: -15px;
-  background-position-x: center;
-  z-index: -1;
-} */
