@@ -284,7 +284,7 @@ export default function SortingViz() {
       </div>
       <div className="buttons">
         {/* <button onClick={stop}>Stop</button> */}
-        <button onClick={resetColors}>Reset Colors</button>
+        {/* <button onClick={resetColors}>Reset Colors</button> */}
         <button onClick={() => {
           resetArray();
           resetColors('orangered');
