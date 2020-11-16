@@ -1,6 +1,6 @@
 {
   "homepage": "https://johnpatrickanders.github.io/goAlgo/",
-  "name": "client",
+  "name": "build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
