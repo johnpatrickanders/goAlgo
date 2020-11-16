@@ -10,11 +10,9 @@ export default function selectionSort(array) {
       animation.comparison = [startIdx, i];
       if (array[i] < array[smallestIdx]) {
         smallestIdx = i;
-        // console.log(smallestIdx)
       }
       if (i === array.length - 1) {
         animation.swap = [startIdx, smallestIdx];
-        // console.log(smallestIdx);
       } else {
         animation.swap = animation.comparison;
       }
