@@ -23,9 +23,11 @@ export default function SortingViz() {
   }
   let convertedSpeed = SPEED >= 100 && SPEED < 300
     ? 400 - SPEED - 30
-    : SPEED >= 300 && SPEED < 390
-      ? 400 - SPEED - 45
-      : 400 - SPEED;
+    : SPEED >= 300 && SPEED < 350
+      ? 400 - SPEED - 94
+      : SPEED >= 350 && SPEED < 400
+        ? 400 - SPEED - 48
+        : 400 - SPEED;
   console.log('converted speed:', convertedSpeed)
 
   let comparisonColor = 'green';
