@@ -16,12 +16,17 @@ export default function SortingViz() {
     resetColors()
   }
 
-  let [SPEED, setSpeed] = useState(150)
+  let [SPEED, setSpeed] = useState(200)
   const handleChange = (e) => {
     SPEED = e.target.value;
     setSpeed(SPEED)
   }
-  let convertedSpeed = 301 - SPEED;
+  let convertedSpeed = SPEED >= 100 && SPEED < 300
+    ? 400 - SPEED - 30
+    : SPEED >= 300 && SPEED < 390
+      ? 400 - SPEED - 45
+      : 400 - SPEED;
+  console.log('converted speed:', convertedSpeed)
 
   let comparisonColor = 'green';
   let swapColor = 'white';
@@ -255,12 +260,12 @@ export default function SortingViz() {
       <div className="slidercontainer">
         <input onChange={handleChange}
           type="range"
-          list='tickmarks'
-          min="1"
-          max="301"
+          // list='tickmarks'
+          min="200"
+          max="400"
           // value={SPEED}
           // onChange={setSpeed}
-          step='60'
+          step='50'
           className="slidercontianer"
           id="my-range"
           name='Speed'
