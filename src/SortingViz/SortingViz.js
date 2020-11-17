@@ -28,18 +28,15 @@ export default function SortingViz() {
   let otherColor = 'orange';
 
   const maxBarHeight = Math.floor(window.screen.availHeight / 10);
-  const maxBarContainerWidth = Math.floor(window.screen.availWidth / 150);
 
   let stopLoop = false;
   let numStops = 0;
 
   const resetColors = (color) => {
     const bars = document.getElementsByClassName('array-bar');
-    // if (!color) color = 'orangered';
     for (const bar of bars) {
       bar.style.backgroundColor = color;
     }
-    // setArray(array)
   }
   const resetArray = () => {
     const array = [];
@@ -78,7 +75,7 @@ export default function SortingViz() {
       const isColorChange = i % 3 !== 2;
       if (isColorChange) { // if the index falls just BEFORE the swap (i.e. on 2nd comparison)
         setTimeout(() => {
-          const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor; // if the index falls on the "swap" value...
+          const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor;
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
         }, i * convertedSpeed)
@@ -97,7 +94,6 @@ export default function SortingViz() {
       }
       numStops += 1;
     }
-
   }
 
   const insertionSortAnimate = () => {
@@ -177,6 +173,8 @@ export default function SortingViz() {
             barTwo.height = tempHeight;
             barOne.backgroundColor = otherColor;
           }
+          if (i === animations.length - 1) resetColors('green');
+
         }, i * convertedSpeed)
       }
     }
@@ -284,7 +282,7 @@ export default function SortingViz() {
       </div>
       <div className="buttons">
         {/* <button onClick={stop}>Stop</button> */}
-        <button onClick={resetColors}>Reset Colors</button>
+        {/* <button onClick={resetColors}>Reset Colors</button> */}
         <button onClick={() => {
           resetArray();
           resetColors('orangered');
