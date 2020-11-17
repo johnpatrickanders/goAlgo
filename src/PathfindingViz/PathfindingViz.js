@@ -13,11 +13,11 @@ export default function PathfindingViz() {
 
   const START_NODE_ROW = 8;
   const START_NODE_COL = 12;
-  const END_NODE_ROW = 12;
+  const END_NODE_ROW = 22;
   const END_NODE_COL = 37;
 
   useEffect(() => {
-    for (let row = 0; row < 20; row++) {
+    for (let row = 0; row < 40; row++) {
       const currentRow = [];
       for (let col = 0; col < 50; col++) {
         const currentNode = {
