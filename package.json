@@ -1,7 +1,5 @@
 {
-  "root": "/public/index.html",
-  "homepage": "https://goal.herokuapp.com",
-  "name": "build",
+  "name": "goalg",
   "version": "0.1.0",
   "private": false,
   "dependencies": {
