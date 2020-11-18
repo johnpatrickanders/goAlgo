@@ -1,5 +1,7 @@
 body {
-  background-color:  #08083c;
+  /* background-color:  #08083c; */
+
+  background-color: rgb(187, 187, 187);
   font-family: "Geneva";
 }
 
@@ -19,10 +21,19 @@ body {
 }
 
 .array-container {
-  min-height: 55vh;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  justify-items: center;
+}
+
+.controls-container {
+  min-height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   justify-items: center;
 }
 
