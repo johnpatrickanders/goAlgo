@@ -8,7 +8,7 @@ export default function NavBar() {
   const history = useHistory();
 
   const handleClickSort = () => {
-    history.push('/');
+    history.push('/sorting');
   }
   const handleClickPath = () => {
     history.push('/pathfinding');

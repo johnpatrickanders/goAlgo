@@ -1,9 +1,9 @@
 .grid {
-  margin: 1px;
+  margin: 5px;
   background: whitesmoke;
   /* position: absolute; */
   justify-items: space-around;
-
+  border-radius: 3px;
 }
 
 .grid-row {
