@@ -41,7 +41,7 @@ export default function () {
         return <div className='invisible-lines' hidden> <p>{line}</p> </div>
       })}
       <div id='explore' hidden={true}>
-        <button >
+        <button id='go-button'>
           <img onClick={() => window.location = '/sorting'} src='apple-touch-icon.png'></img>
         </button>
         <span>
