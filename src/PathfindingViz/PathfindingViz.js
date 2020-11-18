@@ -17,24 +17,7 @@ export default function PathfindingViz() {
   const END_NODE_COL = 37;
 
   useEffect(() => {
-    for (let row = 0; row < 40; row++) {
-      const currentRow = [];
-      for (let col = 0; col < 50; col++) {
-        const currentNode = {
-          col,
-          row,
-          isStart: row === START_NODE_ROW && col === START_NODE_COL,
-          isFinish: row === END_NODE_ROW && col === END_NODE_COL,
-          distance: Infinity,
-          isVisited: false,
-          isWall: false,
-          previousNode: null
-        };
-        currentRow.push(currentNode);
-      }
-      grid.push(currentRow);
-    }
-    setGrid([...grid]);
+    setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL));
     console.log('useEffect once?')
   }, [])
 
@@ -134,8 +117,14 @@ export default function PathfindingViz() {
     console.log(shortestPath);
     dijkstraVisualize(visitiedNodesInOrder, shortestPath)
   }
+
+  const resetGrid = () => {
+
+  }
+
   return (
     <>
+      <button onClick={resetGrid}>Reset Grid</button>
       <button onClick={() => dijkstraAnimate()}>Dijkstra</button>
       <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
       <button onClick={() => breadthFirstSearchVisualize()}>Breadth First Search</button>
@@ -167,4 +156,26 @@ export default function PathfindingViz() {
       </div>
     </>
   );
+}
+
+function getBlankGrid(startRow, startCol, endRow, endCol) {
+  const grid = [];
+  for (let row = 0; row < 40; row++) {
+    const currentRow = [];
+    for (let col = 0; col < 50; col++) {
+      const currentNode = {
+        col,
+        row,
+        isStart: row === startRow && col === startCol,
+        isFinish: row === endRow && col === endCol,
+        distance: Infinity,
+        isVisited: false,
+        isWall: false,
+        previousNode: null
+      };
+      currentRow.push(currentNode);
+    }
+    grid.push(currentRow);
+  }
+  return grid;
 }

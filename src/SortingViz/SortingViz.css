@@ -1,6 +1,5 @@
 body {
   /* background-color:  #08083c; */
-
   background-color: rgb(187, 187, 187);
   font-family: "Geneva";
 }
@@ -12,12 +11,9 @@ body {
   max-width: 95vw;
   height: 100vh / 1.5;
   border-radius: 4pt;
-  /* stroke: black; */
-  /* stroke-width: 2pt; */
   background-color: #304343;
   margin: auto;
   margin-top: 9px;
-  /* margin-right: 50px */
 }
 
 .array-container {
