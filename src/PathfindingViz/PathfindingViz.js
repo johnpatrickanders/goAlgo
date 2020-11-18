@@ -10,14 +10,27 @@ export default function PathfindingViz() {
   let [grid, setGrid] = useState([]);
   const [SPEED, SET_SPEED] = useState(20);
   let mousePressed = false;
+  const GRID_HEIGHT = Math.floor(window.innerHeight / 35);
+  const GRID_WIDTH = Math.floor(window.innerWidth / 27);
 
-  const START_NODE_ROW = 8;
-  const START_NODE_COL = 12;
-  const END_NODE_ROW = 22;
-  const END_NODE_COL = 37;
+  // const START_NODE_ROW = 8;
+  // const START_NODE_COL = 12;
+  // const END_NODE_ROW = 22;
+  // const END_NODE_COL = 37;
+  const START_NODE_ROW = Math.floor(GRID_HEIGHT / 3);
+  const START_NODE_COL = Math.floor(GRID_WIDTH / 4);
+  const END_NODE_ROW = Math.floor(GRID_HEIGHT / 1.5);
+  const END_NODE_COL = Math.floor(GRID_WIDTH / 1.3);
+
 
   useEffect(() => {
-    setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL));
+    setGrid(getBlankGrid(
+      START_NODE_ROW,
+      START_NODE_COL,
+      END_NODE_ROW,
+      END_NODE_COL,
+      GRID_WIDTH,
+      GRID_HEIGHT));
   }, [])
 
   const handleMouseDown = (row, col) => {
@@ -30,7 +43,6 @@ export default function PathfindingViz() {
     targetNode.isWall = !targetNode.isWall;
     const targetDomNode = document.getElementById(`loc-${row}-${col}`);
     targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');
-    console.log(row, col, grid);
   }
   const handleMouseEnter = (row, col) => {
     const targetNode = grid[row][col];
@@ -41,7 +53,6 @@ export default function PathfindingViz() {
     targetNode.isWall = !targetNode.isWall;
     const targetDomNode = document.getElementById(`loc-${row}-${col}`);
     targetNode.isWall ? targetDomNode.classList.add('node-is-wall') : targetDomNode.classList.remove('node-is-wall');
-    console.log(row, col, grid);
   }
   const handleMouseUp = () => {
     mousePressed = false;
@@ -49,7 +60,6 @@ export default function PathfindingViz() {
   const depthFirstSearchAnimate = (pathOfNodes) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
-      console.log("interval: ", interval)
       setTimeout(() => {
         const currentPathNode = pathOfNodes[i];
         const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`);
@@ -68,7 +78,6 @@ export default function PathfindingViz() {
   const breadthFirstSearchAnimate = (pathOfNodes) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
-      console.log("interval: ", interval)
       setTimeout(() => {
         const currentPathNode = pathOfNodes[i];
         const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`)
@@ -81,7 +90,6 @@ export default function PathfindingViz() {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const pathOfNodes = breadthFirstSearch(grid, startNode, endNode);
-    console.log(pathOfNodes)
     breadthFirstSearchAnimate(pathOfNodes)
   }
 
@@ -89,7 +97,6 @@ export default function PathfindingViz() {
   const dijkstraVisualize = (pathOfNodes, shortestPath) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
-      console.log("interval: ", interval)
       setTimeout(() => {
         const currentPathNode = pathOfNodes[i];
         const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`)
@@ -113,18 +120,16 @@ export default function PathfindingViz() {
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const visitiedNodesInOrder = dijkstra(grid, startNode, endNode);
     const shortestPath = getNodesInShortestPath(endNode)
-    console.log(shortestPath);
     dijkstraVisualize(visitiedNodesInOrder, shortestPath)
   }
 
   const resetGrid = () => {
-    console.log('reset')
     grid.forEach(row => row.forEach(node => {
       const currentDomNode = document.getElementById(`loc-${node.row}-${node.col}`)
       currentDomNode.classList.remove('node-visited', 'node-is-wall', 'node-short-visited')
     }))
     setGrid([])
-    setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL));
+    setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL, GRID_WIDTH, GRID_HEIGHT));
     // updateDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp)
   }
 
@@ -140,11 +145,11 @@ export default function PathfindingViz() {
 }
 
 
-function getBlankGrid(startRow, startCol, endRow, endCol) {
+function getBlankGrid(startRow, startCol, endRow, endCol, gridWidth, gridHeight) {
   const grid = [];
-  for (let row = 0; row < 40; row++) {
+  for (let row = 0; row < gridHeight; row++) {
     const currentRow = [];
-    for (let col = 0; col < 50; col++) {
+    for (let col = 0; col < gridWidth; col++) {
       const currentNode = {
         col,
         row,
