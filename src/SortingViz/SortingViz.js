@@ -312,20 +312,3 @@ export default function SortingViz() {
 function randomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) * min)
 }
-
-function arraysEqual(array1, array2) {
-  if (array1.length !== array2.length) return false;
-  for (let i = 0; i < array1.length; i += 1) {
-    if (array1[i] !== array2[i]) {
-      console.log(array1[i], array2[i]);
-      return false;
-    }
-  }
-  return true;
-}
-
-// console.log("Should be TRUE:", arraysEqual([1, 5, 4], [1, 5, 4]))
-// console.log("Should be FALSE:", arraysEqual([1, 4], [1, 5, 4]))
-// console.log("Should be FALSE:", arraysEqual([1, 0, 4], [1, 5, 4]))
-// console.log("Should be FALSE:", arraysEqual([1, 0, 4], [1, 50, 4]))
-// console.log("Should be FALSE:", arraysEqual([1, 0, 4], [1, 0, -1]))

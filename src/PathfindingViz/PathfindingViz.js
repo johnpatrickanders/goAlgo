@@ -94,7 +94,7 @@ export default function PathfindingViz() {
   }
 
 
-  const dijkstraVisualize = (pathOfNodes, shortestPath) => {
+  const dijkstraAnimate = (pathOfNodes, shortestPath) => {
     for (let i = 0; i < pathOfNodes.length; i++) {
       const interval = i * SPEED;
       setTimeout(() => {
@@ -115,12 +115,12 @@ export default function PathfindingViz() {
     }
   }
 
-  const dijkstraAnimate = () => {
+  const dijkstraVisualize = () => {
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const visitiedNodesInOrder = dijkstra(grid, startNode, endNode);
     const shortestPath = getNodesInShortestPath(endNode)
-    dijkstraVisualize(visitiedNodesInOrder, shortestPath)
+    dijkstraAnimate(visitiedNodesInOrder, shortestPath)
   }
 
   const resetGrid = () => {
@@ -133,14 +133,27 @@ export default function PathfindingViz() {
     // updateDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp)
   }
 
+  const animateAlgo = () => {
+    const algos = [depthFirstSearchVisualize, breadthFirstSearchVisualize, dijkstraVisualize]
+    const algoIdxString = document.getElementById('pathfinding-options').options.selectedIndex;
+    const algoIdx = Number(algoIdxString)
+    algos[algoIdx]();
+  }
+
   return (
-    <>
-      <button onClick={resetGrid}>Reset Grid</button>
-      <button onClick={() => dijkstraAnimate()}>Dijkstra</button>
-      <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
-      <button onClick={() => breadthFirstSearchVisualize()}>Breadth First Search</button>
+    <div id='grid-container'>
+      <div id='grid-controls'>
+        <select label='Choose an Algo' name="pathfinding-options" id="pathfinding-options">
+          <option label='Depth First Search' value='0'></option>
+          <option label='Breadth First Search' value='1'></option>
+          <option label='Dijkstra' value='2'></option>
+        </select>
+        <button onClick={animateAlgo}>Search!</button>
+        <button onClick={resetGrid}>Reset Grid</button>
+
+      </div>
       {getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp)}
-    </>
+    </div>
   );
 }
 
