@@ -2,6 +2,12 @@
   width: 100;
   display: flex;
   justify-self: flex-start;
+  justify-items: flex-start;
+  align-items: center;
   border-radius: 5px;
   background-color: rgb(45, 125, 196);
+}
+
+#logo:hover {
+  cursor: pointer;
 }

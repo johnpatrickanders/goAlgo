@@ -16,6 +16,15 @@ export default function NavBar() {
   console.log(history)
   return (
     <nav id='navbar'>
+      <img onClick={() => { window.location = '/' }}
+        id='logo'
+        src='favicon.ico'
+        style={{
+          height: '40px',
+          width: '40px',
+          margin: 0,
+          marginLeft: '15px'
+        }} />
       <button onClick={handleClickSort}>
         Sorting
         </button>

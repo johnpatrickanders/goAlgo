@@ -1,5 +1,6 @@
 .grid {
-  margin: 5px;
+  margin: 20px;
+  padding: 15px;
   background: whitesmoke;
   /* position: absolute; */
   justify-items: space-around;
