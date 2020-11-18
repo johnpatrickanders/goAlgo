@@ -23,14 +23,15 @@ export default function NavBar() {
           height: '40px',
           width: '40px',
           margin: 0,
-          marginLeft: '15px'
+          marginLeft: '15px',
+          marginRight: '20px'
         }} />
-      <button onClick={handleClickSort}>
+      <a href='/sorting'>
         Sorting
-        </button>
-      <button onClick={handleClickPath}>
+        </a>
+      <a href='/pathfinding'>
         Pathfinding
-        </button>
+        </a>
     </nav>
   )
 }
