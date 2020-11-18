@@ -3,27 +3,26 @@
   25%  {background-color:yellow; left:200px; top:0px; color: black}
   50%  {background-color:rgb(157, 54, 230); left:200px; top:200px;}
   75%  {background-color:rgb(1, 196, 1); left:0px; top:200px;}
-  100% {background-color:orangered; left:0px; top:0px;}
+  100% {background-color:rgb(45, 125, 196); left:0px; top:0px;}
 }
 
-/* The element to apply the animation to */
-/* div {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  background-color: red;
-  animation-name: example;
-  animation-duration: 4s;
-} */
+.lines {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
 
 p {
   display: flex;
   align-self: center;
-  /* font: center; */
+}
+
+span {
+  margin-left: 15px;
 }
 
 .line {
-  min-height: 100px;
+  min-height: 15vh;
   display: flex;
   justify-content: center;
   margin: 5px;
@@ -37,10 +36,26 @@ p {
   animation-duration: 4s;
 }
 
-/* #explore {
-  display: flex;
-  justify-content: center;
-} */
+#explore {
+  max-height: 245px;
+  margin: 50px;
+}
+
+button {
+  /* padding: 0px; */
+  border-radius: 3px;
+  /* border: none; */
+  color: white;
+  padding: 13px;
+}
+
+img {
+  border-radius: 3px;
+}
+
+button:hover {
+  cursor: pointer;
+}
 
 /* #navbar {
   hidden: true
