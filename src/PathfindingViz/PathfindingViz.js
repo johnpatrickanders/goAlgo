@@ -18,7 +18,6 @@ export default function PathfindingViz() {
 
   useEffect(() => {
     setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL));
-    console.log('useEffect once?')
   }, [])
 
   const handleMouseDown = (row, col) => {
@@ -119,7 +118,14 @@ export default function PathfindingViz() {
   }
 
   const resetGrid = () => {
-
+    console.log('reset')
+    grid.forEach(row => row.forEach(node => {
+      const currentDomNode = document.getElementById(`loc-${node.row}-${node.col}`)
+      currentDomNode.classList.remove('node-visited', 'node-is-wall', 'node-short-visited')
+    }))
+    setGrid([])
+    setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL));
+    // updateDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp)
   }
 
   return (
@@ -128,35 +134,11 @@ export default function PathfindingViz() {
       <button onClick={() => dijkstraAnimate()}>Dijkstra</button>
       <button onClick={() => depthFirstSearchVisualize()}>Depth First Search</button>
       <button onClick={() => breadthFirstSearchVisualize()}>Breadth First Search</button>
-      <div className='grid'>
-        {grid.map((row, rowIdx) => {
-          return (
-            <div key={rowIdx} className='grid-row'>
-              {row.map((node, nodeIdx) => {
-                const { isStart, isFinish, isVisited, col, row } = node;
-                return (
-                  <Node
-                    isStart={isStart}
-                    isFinish={isFinish}
-                    key={col + '-' + row}
-                    location={row + '-' + col}
-                    test={'hello there'}
-                    isVisited={isVisited}
-                    row={row}
-                    col={col}
-                    onMouseDown={handleMouseDown}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseUp={handleMouseUp}
-                  ></Node>
-                );
-              })}
-            </div>
-          )
-        })}
-      </div>
+      {getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp)}
     </>
   );
 }
+
 
 function getBlankGrid(startRow, startCol, endRow, endCol) {
   const grid = [];
@@ -178,4 +160,35 @@ function getBlankGrid(startRow, startCol, endRow, endCol) {
     grid.push(currentRow);
   }
   return grid;
+}
+
+function getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseUp) {
+  return (
+    <div className='grid'>
+      {grid.map((row, rowIdx) => {
+        return (
+          <div key={rowIdx} className='grid-row'>
+            {row.map((node, nodeIdx) => {
+              const { isStart, isFinish, isVisited, col, row } = node;
+              return (
+                <Node
+                  isStart={isStart}
+                  isFinish={isFinish}
+                  key={col + '-' + row}
+                  location={row + '-' + col}
+                  test={'hello there'}
+                  isVisited={isVisited}
+                  row={row}
+                  col={col}
+                  onMouseDown={handleMouseDown}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseUp={handleMouseUp}
+                ></Node>
+              );
+            })}
+          </div>
+        )
+      })}
+    </div>
+  )
 }
