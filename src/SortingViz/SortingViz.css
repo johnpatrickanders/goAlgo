@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   padding: 20px;
   max-width: 95vw;
-  min-height: 87vh;
+  min-height: 86vh;
   border-radius: 3px;
   background-color: #304343;
   margin: auto;
@@ -16,7 +16,7 @@ body {
 }
 
 .array-container {
-  min-height: 60vh;
+  min-height: 65vh;
   display: flex;
   justify-content: center;
   align-items: flex-end;

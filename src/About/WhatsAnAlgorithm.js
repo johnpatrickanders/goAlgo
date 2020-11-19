@@ -4,7 +4,7 @@ import './about.css';
 export default function () {
   let lines = ['so...what\'s an algorithm?',
     'and why would you need one?',
-    'and what do they look like?'
+    'and what do they look like?',
   ]
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function () {
             exploreToggles.style.display = 'flex';
             exploreToggles.style.justifyContent = 'center';
             exploreToggles.hidden = false;
-          }, 3000)
+          }, 3500)
         }
       }, 3300 * i)
     }
@@ -51,7 +51,7 @@ export default function () {
           <p>Your phone doesn't just know how to do this. Someone taught it how to know. Someone left it a letter.</p>
           <p>That someone is a Software Engineer, and that letter is an algorithm.*</p>
           <p style={{ fontSize: '10px' }}>*Yes, it's a bit more complicated than that, but haven't we already argued
-                                            enough this year?</p>
+                                            enough this year? Click the logo!</p>
         </span>
       </div>
     </div>
