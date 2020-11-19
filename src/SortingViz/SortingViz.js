@@ -248,7 +248,7 @@ export default function SortingViz() {
             className="array-bar"
             key={i}
             style={{
-              height: `${value}px`,
+              height: `${value / 11}vh`,
               backgroundColor: 'orangered',
               width: `${90 / NUM_BARS}vh`,
               display: 'inline-block',
@@ -261,40 +261,39 @@ export default function SortingViz() {
       </div>
       <div className='controls-container'>
         <div className="slidercontainer">
-          <input onChange={handleChange}
-            type="range"
-            // list='tickmarks'
-            min="200"
-            max="400"
-            // value={SPEED}
-            // onChange={setSpeed}
-            step='50'
-            className="slidercontianer"
-            id="my-range"
-            name='Speed'
-          />
-
-          <label className='sliderlabel' for='myRange'>Speed</label>
+          <div className='slideritem'>
+            <input onChange={handleChange}
+              type="range"
+              // list='tickmarks'
+              min="200"
+              max="400"
+              // value={SPEED}
+              // onChange={setSpeed}
+              step='50'
+              className="slidercontianer"
+              id="my-range"
+              name='Speed'
+            />
+            <label className='sliderlabel' for='myRange'>Speed</label>
+          </div>
+          <div className='slideritem'>
+            <input onChange={handleBarChange}
+              type="range"
+              min="8"
+              max="200"
+              value={NUM_BARS}
+              className="slider"
+              id="myBarRange"
+              name='Length'
+            />
+            <label className='sliderlabel' for='myBarRange'>Length</label>
+          </div>
         </div>
-        <div className="slidercontainer">
-          <input onChange={handleBarChange}
-            type="range"
-            min="8"
-            max="200"
-            value={NUM_BARS}
-            className="slider"
-            id="myBarRange"
-            name='Length'
-          />
-          <label className='sliderlabel' for='myBarRange'>Length</label>
-        </div>
+        {/* <div className="slidercontainer"> */}
+        {/* </div> */}
         <div className="buttons">
           {/* <button onClick={stop}>Stop</button> */}
           {/* <button onClick={resetColors}>Reset Colors</button> */}
-          <button onClick={() => {
-            resetArray();
-            resetColors('orangered');
-          }}>Get New Array</button>
           <select label='Choose an Algo' name="sorting-options" id="sorting-options">
             <option label='Bubble' value='0'></option>
             <option label='Insertion' value='1'></option>
@@ -302,6 +301,10 @@ export default function SortingViz() {
             <option label='Quick' value='3'></option>
           </select>
           <button onClick={animateAlgo}>Sort!</button>
+          <button onClick={() => {
+            resetArray();
+            resetColors('orangered');
+          }}>Reset</button>
         </div>
       </div>
     </div >

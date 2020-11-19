@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   padding: 20px;
   max-width: 95vw;
-  height: 100vh / 1.5;
+  min-height: 87vh;
   border-radius: 3px;
   background-color: #304343;
   margin: auto;
@@ -26,8 +26,8 @@ body {
 .controls-container {
   min-height: 20vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: space-around;
   align-items: center;
   justify-items: center;
 }
@@ -76,8 +76,15 @@ button:hover {
 
 .slidercontainer {
   display: flex;
+  align-self: center;
+  width: 10vw;
+}
+
+.slideritem {
+  display: flex;
   flex-direction: column;
   align-self: center;
+  margin: 10px;
   margin-top: 40px;
   width: 10vw;
 }
