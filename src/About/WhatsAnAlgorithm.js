@@ -4,15 +4,11 @@ import './about.css';
 export default function () {
   let lines = ['so...what\'s an algorithm?',
     'and why would you need one?',
-    'and what do they look like?',
+    'and what does one look like?',
   ]
 
   useEffect(() => {
     showLines()
-    // const navBar = document.getElementById('navbar');
-    // console.log(navBar)
-    // navBar.hidden = true;
-
   }, [])
 
 
