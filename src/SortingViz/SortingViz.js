@@ -38,6 +38,7 @@ export default function SortingViz() {
 
   let stopLoop = false;
   let numStops = 0;
+  let sorting = false;
 
   const resetColors = (color) => {
     const bars = document.getElementsByClassName('array-bar');
@@ -72,6 +73,7 @@ export default function SortingViz() {
   }, []);
 
   const bubbleSortAnimate = () => {
+    sorting = true;
     const animations = bubbleSort(array);
     console.log(animations)
     for (let i = 0; i < animations.length && !stopLoop; i++) {
@@ -85,7 +87,7 @@ export default function SortingViz() {
           const currentBarColor = i % 3 === 0 ? swapColor : comparisonColor;
           barOne.backgroundColor = currentBarColor;
           barTwo.backgroundColor = currentBarColor;
-        }, i * convertedSpeed)
+        }, i * convertedSpeed);
       } else {
         setTimeout(() => {
           if (barOneIdx > barTwoIdx) {
@@ -124,7 +126,7 @@ export default function SortingViz() {
         }, i * convertedSpeed)
       } else {
         setTimeout(() => {
-          let [prevCurrIdx, prevOtherIdx] = animations[i - 3] ? animations[i - 3] : [0, 0]
+          if (i === animations.length - 1) enableButtons();
           if (currIdx !== otherIdx) {
             let initIdx = currIdx;
             const splice = (currIdx, startIdx, subArr) => {
@@ -170,6 +172,7 @@ export default function SortingViz() {
         }, i * convertedSpeed)
       } else {
         setTimeout(() => {
+          if (i === animations.length - 1) enableButtons();
           const [prevBarOneIdx, prevBarTwoIdx] = animations[i - 1];
           if (barOneIdx !== prevBarOneIdx
             || barTwoIdx !== prevBarTwoIdx
@@ -211,6 +214,7 @@ export default function SortingViz() {
         }, i * convertedSpeed)
       } else {
         setTimeout(() => {
+          if (i === animations.length - 1) enableButtons();
           if (barOneIdx !== 0 && barTwoIdx !== 0 // normal "while" swap
             || i === animations.length - 1) {
             const tempHeight = barOne.height;
@@ -226,7 +230,6 @@ export default function SortingViz() {
             barPivot.backgroundColor = comparisonColor;
 
           }
-          // barPivot.backgroundColor = comparisonColor;
           barTwo.backgroundColor = comparisonColor;
         }, i * convertedSpeed)
       }
@@ -234,10 +237,17 @@ export default function SortingViz() {
   }
 
   const animateAlgo = () => {
+    const sortButtons = document.getElementsByClassName('disable');
+    Array.from(sortButtons).forEach(button => button.disabled = true);
     const algos = [bubbleSortAnimate, insertionSortAnimate, selectionSortAnimate, quickSortAnimate]
     const algoIdxString = document.getElementById('sorting-options').options.selectedIndex;
     const algoIdx = Number(algoIdxString)
     algos[algoIdx]();
+  }
+
+  function enableButtons() {
+    const sortButtons = document.getElementsByClassName('disable');
+    Array.from(sortButtons).forEach(button => button.disabled = false);
   }
 
   return (
@@ -270,7 +280,7 @@ export default function SortingViz() {
               // value={SPEED}
               // onChange={setSpeed}
               step='50'
-              className="slidercontianer"
+              className="slidercontianer disable"
               id="my-range"
               name='Speed'
             />
@@ -282,7 +292,7 @@ export default function SortingViz() {
               min="8"
               max="200"
               value={NUM_BARS}
-              className="slider"
+              className="slider disable"
               id="myBarRange"
               name='Length'
             />
@@ -294,14 +304,14 @@ export default function SortingViz() {
         <div className="buttons">
           {/* <button onClick={stop}>Stop</button> */}
           {/* <button onClick={resetColors}>Reset Colors</button> */}
-          <select label='Choose an Algo' name="sorting-options" id="sorting-options">
+          <select className='disable' label='Choose an Algo' name="sorting-options" id="sorting-options">
             <option label='Bubble' value='0'></option>
             <option label='Insertion' value='1'></option>
             <option label='Selection' value='2'></option>
             <option label='Quick' value='3'></option>
           </select>
-          <button onClick={animateAlgo}>Sort!</button>
-          <button onClick={() => {
+          <button className='disable' onClick={animateAlgo}>Sort!</button>
+          <button className='disable' onClick={() => {
             resetArray();
             resetColors('orangered');
           }}>Reset</button>
