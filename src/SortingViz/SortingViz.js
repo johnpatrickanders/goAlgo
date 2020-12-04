@@ -52,6 +52,7 @@ export default function SortingViz() {
 
   useEffect(() => {
     resetArray();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const bubbleSortAnimate = () => {
