@@ -1,19 +1,16 @@
 export default function breadthSearchFirst(grid, startNode, endNode) {
-  console.log('BST start ===')
   const pathOfNodes = breadthSearchFirstHelp(startNode, grid)
   return pathOfNodes;
 
 }
 
 function breadthSearchFirstHelp(startNode, grid) {
-  console.log('BST help...', grid)
   const array = []
   const queue = [startNode]
   while (queue.length > 0) {
     const currentNode = queue.shift();
     if (currentNode.isWall) continue;
     currentNode.isVisited = true;
-    console.log(currentNode)
     if (currentNode.isFinish) return array;
     if (!currentNode.isStart) {
       array.push(currentNode);

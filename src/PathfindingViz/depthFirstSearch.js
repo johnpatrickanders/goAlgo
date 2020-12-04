@@ -7,7 +7,6 @@ export default function depthFirstSearch(grid, startNode, endNode) {
 
 function depthFirstSearchHelp(currentNode, grid, neighbors, array = []) {
   if (currentNode.isFinish) return;
-  console.log(currentNode, grid)
   if (!currentNode.isStart) {
     currentNode.isVisited = true;
     if (array.length === 1 || currentNode !== array[array.length - 1]) {

@@ -88,8 +88,6 @@ export default function SortingViz() {
 
   const insertionSortAnimate = () => {
     const animations = insertionSort(array);
-    console.log(array.length)
-    console.log(animations)
     const bars = document.getElementsByClassName('array-bar');
     for (let i = 0; i < animations.length; i++) {
       let [currIdx, otherIdx] = animations[i];
@@ -136,7 +134,6 @@ export default function SortingViz() {
 
   const selectionSortAnimate = () => {
     const animations = selectionSort(array);
-    console.log(animations);
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx] = animations[i];
@@ -172,7 +169,6 @@ export default function SortingViz() {
 
   const quickSortAnimate = () => {
     const animations = quickSort(array);
-    console.log(animations)
     for (let i = 0; i < animations.length; i++) {
       const bars = document.getElementsByClassName('array-bar');
       const [barOneIdx, barTwoIdx, pivotIdx] = animations[i];

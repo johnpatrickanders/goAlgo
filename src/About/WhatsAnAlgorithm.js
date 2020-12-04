@@ -12,11 +12,10 @@ export default function () {
   }, [])
 
 
-  const showLines = (altDomArray) => {
+  const showLines = () => {
     const domLines = document.getElementsByClassName('invisible-lines');
     for (let i = 0; i < domLines.length; i++) {
       const domLine = domLines[i];
-      console.log(domLine)
       setTimeout(() => {
         domLine.classList.add('line');
         domLine.hidden = false;
@@ -33,8 +32,8 @@ export default function () {
   }
   return (
     <div className='lines'>
-      {lines.map((line) => {
-        return <div className='invisible-lines' hidden> <p>{line}</p> </div>
+      {lines.map((line, i) => {
+        return <div key={i} className='invisible-lines' hidden> <p>{line}</p> </div>
       })}
       <div id='explore' hidden={true}>
         <button id='go-button'>
