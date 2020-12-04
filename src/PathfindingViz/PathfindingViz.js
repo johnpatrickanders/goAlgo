@@ -14,10 +14,6 @@ export default function PathfindingViz() {
   const GRID_WIDTH = Math.floor(window.innerWidth / 27);
   let finding = false;
 
-  // const START_NODE_ROW = 8;
-  // const START_NODE_COL = 12;
-  // const END_NODE_ROW = 22;
-  // const END_NODE_COL = 37;
   const START_NODE_ROW = Math.floor(GRID_HEIGHT / 3);
   const START_NODE_COL = Math.floor(GRID_WIDTH / 4);
   const END_NODE_ROW = Math.floor(GRID_HEIGHT / 1.5);
@@ -73,6 +69,7 @@ export default function PathfindingViz() {
         currentDomNode.classList.add('node-visited');
         if (i === pathOfNodes.length - 1) {
           enableButtons();
+          finding = false;
         }
       }, interval)
     }
@@ -152,9 +149,10 @@ export default function PathfindingViz() {
     grid.forEach(row => row.forEach(node => {
       const currentDomNode = document.getElementById(`loc-${node.row}-${node.col}`);
       currentDomNode.classList.remove('node-visited', 'node-short-visited');
+      // currentDomNode.className.includes('node-is-wall') ? node.isWall = true : node.isWall = false;
       node.isVisited = false;
     }))
-    setGrid(grid)
+    // setGrid(grid)
     // setGrid(getBlankGrid(START_NODE_ROW, START_NODE_COL, END_NODE_ROW, END_NODE_COL, GRID_WIDTH, GRID_HEIGHT));
   }
 
@@ -172,7 +170,7 @@ export default function PathfindingViz() {
   function enableButtons() {
     const findingButtons = document.getElementsByClassName('disable');
     Array.from(findingButtons).forEach(button => button.disabled = false);
-    finding = false; // enables walls
+    finding = false; // enables ability to add walls
   }
 
   return (
@@ -222,7 +220,7 @@ function getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseU
         return (
           <div key={rowIdx} className='grid-row'>
             {row.map((node) => {
-              const { isStart, isFinish, isVisited, col, row } = node;
+              const { isStart, isFinish, isVisited, col, row, isWall } = node;
               return (
                 <Node
                   isStart={isStart}
@@ -236,6 +234,7 @@ function getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseU
                   onMouseDown={handleMouseDown}
                   onMouseEnter={handleMouseEnter}
                   onMouseUp={handleMouseUp}
+                  isWall={isWall}
                 ></Node>
               );
             })}

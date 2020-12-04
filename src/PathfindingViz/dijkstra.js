@@ -1,4 +1,4 @@
-export default function depthFirstSearch(grid, startNode, endNode) {
+export default function dijkstra(grid, startNode, endNode) {
 
   const visitedNodesInOrder = [];
 
@@ -30,7 +30,7 @@ function getUnvisitedNeighbors(node, grid) {
   if (col < grid[0].length - 1) neighbors.push(grid[row][col + 1]) // "right"
   if (row < grid.length - 1) neighbors.push(grid[row + 1][col]); // "bottom"
   if (col > 0) neighbors.push(grid[row][col - 1]) // "left"
-  return neighbors.filter(neighbor => !neighbor.isVisited);
+  return neighbors.filter(neighbor => !neighbor.isVisited && !neighbor.isWall);
 }
 
 function updateUnvisitedNeighbors(node, grid) {
