@@ -12,19 +12,19 @@ function App() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path="/pathfinding">
+                <Route exact={true} path="/pathfinding">
                     <NavBar />
                     <PathFindingViz></PathFindingViz>
                 </Route>
             </Switch>
             <Switch>
-                <Route exact path="/sorting">
+                <Route exact={true} path="/sorting">
                     <NavBar />
                     <SortingViz></SortingViz>
                 </Route>
             </Switch>
             <Switch>
-                <Route exact path="/">
+                <Route exact={true} path="/">
                     <WhatsAnAlgorithm />
                 </Route>
             </Switch>

@@ -38,7 +38,7 @@ export default function () {
       })}
       <div id='explore' hidden={true}>
         <button id='go-button'>
-          <img onClick={() => window.location = '/sorting'} src='apple-touch-icon.png'></img>
+          <img onClick={() => window.location = '/sorting'} alt='Click Here to Begin' src='apple-touch-icon.png'></img>
         </button>
         <span>
           <p>An algorithm is a process determined by rules a computer can follow.

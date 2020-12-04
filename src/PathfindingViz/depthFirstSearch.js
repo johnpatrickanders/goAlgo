@@ -48,14 +48,3 @@ function getNeighbors(node, grid) {
     && !grid[row][col - 1].isStart) neighbors.push(grid[row][col - 1]) // "left"
   return neighbors;
 }
-
-function updateNeighbors(node, grid) {
-  const neighbors = getNeighbors(node, grid);
-  for (const neighbor of neighbors) {
-    neighbor.distance = node.distance + 1;
-  }
-}
-
-function sortNodesByDistance(unvisitedNodes) {
-  unvisitedNodes.sort((nodeOne, nodeTwo) => nodeOne.distance - nodeTwo.distance);
-}

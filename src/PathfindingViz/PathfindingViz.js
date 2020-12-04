@@ -8,7 +8,7 @@ import './PathfindingViz.css';
 
 export default function PathfindingViz() {
   let [grid, setGrid] = useState([]);
-  const [SPEED, SET_SPEED] = useState(20);
+  const [SPEED] = useState(20);
   let mousePressed = false;
   const GRID_HEIGHT = Math.floor(window.innerHeight / 35);
   const GRID_WIDTH = Math.floor(window.innerWidth / 27);
@@ -32,12 +32,17 @@ export default function PathfindingViz() {
       END_NODE_COL,
       GRID_WIDTH,
       GRID_HEIGHT));
-  }, [])
+  }, [START_NODE_ROW,
+    START_NODE_COL,
+    END_NODE_ROW,
+    END_NODE_COL,
+    GRID_WIDTH,
+    GRID_HEIGHT])
 
   const handleMouseDown = (row, col) => {
     const targetNode = grid[row][col];
-    if (row === START_NODE_ROW && col === START_NODE_COL
-      || row === END_NODE_ROW && col === END_NODE_COL
+    if ((row === START_NODE_ROW && col === START_NODE_COL)
+      || (row === END_NODE_ROW && col === END_NODE_COL)
       || finding) {
       return;
     }
@@ -49,8 +54,8 @@ export default function PathfindingViz() {
   const handleMouseEnter = (row, col) => {
     const targetNode = grid[row][col];
     if (!mousePressed
-      || row === START_NODE_ROW && col === START_NODE_COL
-      || row === END_NODE_ROW && col === END_NODE_COL
+      || (row === START_NODE_ROW && col === START_NODE_COL)
+      || (row === END_NODE_ROW && col === END_NODE_COL)
       || targetNode.isWall) return;
     targetNode.isWall = !targetNode.isWall;
     const targetDomNode = document.getElementById(`loc-${row}-${col}`);
@@ -67,7 +72,6 @@ export default function PathfindingViz() {
         const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`);
         currentDomNode.classList.add('node-visited');
         if (i === pathOfNodes.length - 1) {
-          finding = false;
           enableButtons();
         }
       }, interval)
@@ -89,7 +93,6 @@ export default function PathfindingViz() {
         const currentDomNode = document.getElementById(`loc-${currentPathNode.row}-${currentPathNode.col}`)
         currentDomNode.classList.add('node-visited');
         if (i === pathOfNodes.length - 1) {
-          finding = false;
           enableButtons();
         }
       }, interval)
@@ -119,7 +122,6 @@ export default function PathfindingViz() {
               const currentShortDomNode = document.getElementById(`loc-${currentShortNode.row}-${currentShortNode.col}`);
               currentShortDomNode.classList.add('node-short-visited');
               if (i === pathOfNodes.length - 1 && j === shortestPath.length - 1) {
-                finding = false;
                 enableButtons();
               }
             }, newInterval);
@@ -170,6 +172,7 @@ export default function PathfindingViz() {
   function enableButtons() {
     const findingButtons = document.getElementsByClassName('disable');
     Array.from(findingButtons).forEach(button => button.disabled = false);
+    finding = false; // enables walls
   }
 
   return (
