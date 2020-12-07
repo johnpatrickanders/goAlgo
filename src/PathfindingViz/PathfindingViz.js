@@ -227,7 +227,6 @@ function getInitialDomGrid(grid, handleMouseDown, handleMouseEnter, handleMouseU
                   isFinish={isFinish}
                   key={col + '-' + row}
                   location={row + '-' + col}
-                  test={'hello there'}
                   isVisited={isVisited}
                   row={row}
                   col={col}
