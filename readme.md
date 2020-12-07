@@ -97,7 +97,7 @@ return (
 
 ### Draggable Graph Walls
 ***
-The user may drop walls along the pathfinding graph by clicking an unoccupied node. This fills the node with a black circle and marks it as a wall. Later, when the user clicks the sort button, the given pathfinding algorithm is able to notice which <Node/>'s are marked in this way.
+The user may drop walls along the pathfinding graph by clicking an unoccupied node. This fills the node with a black circle and marks it as a wall. Later, when the user clicks the sort button, the given pathfinding algorithm is able to notice which nodes are marked in this way.
 
 ![](readmeImages/walls.gif)
 
