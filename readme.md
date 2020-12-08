@@ -46,7 +46,7 @@ The landing page displays a brief CSS animation that provides a very fundamental
 ***
 Once the introductory animation on the landing page completes, you may click on the logo to be taken to the sorting algorithms page. Bubble Sort, Quick Sort, Merge Sort, and Insertion Sort are currently available for animation. The animation consists of an array of HTML divs whose heights are dependent upon a randomly generated array of integers. Upon the user's click, the array is sorted with the selected algorithm, framed, and then reinterpreted for the DOM. Using AJAX calls allows the DOM to "animate" the split-second calculations just described at the interval the user provides.
 
- ![](readmeImages/sorting.png)
+ ![](readmeImages/sorting.gif)
 
 ### Speed and Length Sliders
 ***
@@ -54,7 +54,7 @@ The speed and size of the sort may be changed by two sliders. The speed slider i
 
 As for the length slider, this is straightforward in that it simply generates a larger or smaller array based on the speed slider's value. The only detailed piece here is ensuring the width of the sum of width of the bars did not overflow the page.
 
- ![](readmeImages/sliders.png)
+ ![](readmeImages/sliders.gif)
 
 
 ### Pathfinding Algorithms
