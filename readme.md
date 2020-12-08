@@ -32,7 +32,7 @@ The technologies used are simple and straightforward since this project lives on
 
 ## Features Overview
 
-goAlgo is a visualizer for sorting and pathfinding algorithms. Major features are highlighted below, and the app has potenitial for adding further sorting and pathfinding algorithms, further explanation breaking down each algorithm, and even visualizing data structures.
+goAlgo is a visualizer for sorting and pathfinding algorithms. Major features are highlighted below, and the app has potenitial for adding further sorting and pathfinding algorithms, further explanation breaking down each algorithm, and even visualizing data structures. 
 
 > Current Status: ongoing development
 
@@ -105,3 +105,5 @@ The user may drop walls along the pathfinding graph by clicking an unoccupied no
 #### User Story
 As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
 
+#### Thanks
+I want to extend a great thanks to Clement Mihailescu for his inspiration and tutorials for Dijkstra and general visualizations. While his work served as a good pointer, I intentionally challenged myself not to rely on his code by first solving the algorithms myself, and by also using React hooks instead of classes.
