@@ -10,7 +10,7 @@
 
 
 ## Technologies 
-The technologies used are simple and straightforward since this project lives on the front end, so I will simply list them here:
+The technologies used are simple and straightforward since this project lives on the front end:
 - React
 - Vanilla CSS
 - JavaScript
@@ -102,6 +102,6 @@ The user may drop walls along the pathfinding graph by clicking an unoccupied no
 ![](readmeImages/walls.gif)
 
 
-##User Stories
+#### User Story
 As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
 
