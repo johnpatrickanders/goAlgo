@@ -10,7 +10,7 @@
 
 
 ## Technologies 
-The technologies used are simple and straightforward since this project lives on the front end, so I will simply list them here:
+The technologies used are simple and straightforward since this project lives on the front end:
 - React
 - Vanilla CSS
 - JavaScript
@@ -32,7 +32,7 @@ The technologies used are simple and straightforward since this project lives on
 
 ## Features Overview
 
-goAlgo is a visualizer for sorting and pathfinding algorithms. Major features are highlighted below, and the app has potenitial for adding further sorting and pathfinding algorithms, further explanation breaking down each algorithm, and even visualizing data structures.
+goAlgo is a visualizer for sorting and pathfinding algorithms. Major features are highlighted below, and the app has potenitial for adding further sorting and pathfinding algorithms, further explanation breaking down each algorithm, and even visualizing data structures. 
 
 > Current Status: ongoing development
 
@@ -46,7 +46,7 @@ The landing page displays a brief CSS animation that provides a very fundamental
 ***
 Once the introductory animation on the landing page completes, you may click on the logo to be taken to the sorting algorithms page. Bubble Sort, Quick Sort, Merge Sort, and Insertion Sort are currently available for animation. The animation consists of an array of HTML divs whose heights are dependent upon a randomly generated array of integers. Upon the user's click, the array is sorted with the selected algorithm, framed, and then reinterpreted for the DOM. Using AJAX calls allows the DOM to "animate" the split-second calculations just described at the interval the user provides.
 
- ![](readmeImages/sorting.png)
+ ![](readmeImages/sorting.gif)
 
 ### Speed and Length Sliders
 ***
@@ -54,7 +54,7 @@ The speed and size of the sort may be changed by two sliders. The speed slider i
 
 As for the length slider, this is straightforward in that it simply generates a larger or smaller array based on the speed slider's value. The only detailed piece here is ensuring the width of the sum of width of the bars did not overflow the page.
 
- ![](readmeImages/sliders.png)
+ ![](readmeImages/sliders.gif)
 
 
 ### Pathfinding Algorithms
@@ -102,6 +102,8 @@ The user may drop walls along the pathfinding graph by clicking an unoccupied no
 ![](readmeImages/walls.gif)
 
 
-##User Stories
+#### User Story
 As a software engineering student, I want to be able visualize common sorting algorithms in order to understand them at a high level.
 
+#### Thanks
+I want to extend a great thanks to Clement Mihailescu for his inspiration and tutorials for Dijkstra and general visualizations. While his work served as a good pointer, I intentionally challenged myself not to rely on his code by first solving the algorithms myself, and by also using React hooks instead of classes.
